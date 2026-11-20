@@ -106,12 +106,12 @@ llm.py    ── BaseLLM 抽象：MockLLM ↔ OpenAICompatLLM（两种方案共�
 
 ## 3. 快速开始
 
-> 只需要仓库里的 `.venv-rag` 解释器，**不需要 pip install、不需要 API key、不联网**。所有命令都在项目根目录 `.` 下执行（Windows PowerShell）。
+> 只需要 Python 3.10+（依赖 `rank-bm25` / `langgraph` / `openai`，见 `requirements.txt`），**不需要 API key、不联网**即可跑 Mock 模式。所有命令在本项目目录下执行。
 
 ### 3.1 运行 demo（Mock 模式，默认）
 
 ```powershell
-cd "."
+cd 02-labor-law-agent
 $py = "python"
 
 # 5 个内置问题，打印完整 trace（思考 / 工具调用 / 参数 / 返回 / 最终答案）
@@ -227,7 +227,7 @@ $env:OPENAI_MODEL    = "deepseek-chat"           # 可选：默认 gpt-4o-mini
 
 ## 5. 实测结果
 
-> 以下全部是在本机 `.venv-rag` + Mock 模式下**真实运行**的输出（2026-11-21，`--no-color` 便于贴文档）。没有跑过的指标会明确写「未测量」。
+> 以下全部是在Mock 模式下**真实运行**的输出（2026-11-21，`--no-color` 便于贴文档）。没有跑过的指标会明确写「未测量」。
 
 ### 5.1 `demo` 汇总（5 个内置问题，真实运行）
 
@@ -455,7 +455,7 @@ graph TD;
 
 见 `requirements.txt`。核心约束：
 
-- 只使用仓库统一环境 `.venv-rag`，不新建 venv；
+- 依赖版本记录在 `requirements.txt`，Mock 模式无需 API key；
 - `rank-bm25` 缺失时自动降级为包内纯标准库 BM25（公式对齐 BM25Okapi），`langgraph` 缺失时方案 B 延迟导入并给出回退提示——这两点都有代码保护，不会因为缺依赖导致整个项目不可用；
 - `openai` 仅在 `--openai` 时延迟导入。
 
@@ -466,7 +466,7 @@ graph TD;
 ### 复现全部结果
 
 ```powershell
-cd "."
+cd 02-labor-law-agent
 $py = "python"
 & $py -m labor_agent.cli demo --no-color          # 5 个问题 + trace
 & $py -m labor_agent.cli ask "公司违法辞退我，月薪12000，工作3年7个月，能赔多少？依据哪一条？" --no-color
