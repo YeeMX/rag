@@ -42,3 +42,6 @@ Thumbs.db
 
 # 与本作品集无关的本地项目
 ai-town/
+
+# 真实数据集（XFUND 等，压缩包与图片体积大/有许可限制）
+03-vision-ocr-demo/data/real/

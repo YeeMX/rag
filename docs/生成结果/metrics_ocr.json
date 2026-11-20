@@ -1,0 +1,233 @@
+{
+  "config": {
+    "split": "val",
+    "num_images": 8,
+    "det_model": "PP-OCRv5_mobile_det",
+    "rec_model": "PP-OCRv5_mobile_rec",
+    "lang": "ch",
+    "use_doc_orientation_classify": false,
+    "use_doc_unwarping": false,
+    "use_textline_orientation": false,
+    "enable_mkldnn": false,
+    "init_seconds": 10.13,
+    "crop_padding_px": 8,
+    "device": "cpu",
+    "warmup": "第一张图 + 第一个裁剪区域各跑一次，不计入耗时。"
+  },
+  "full_image": {
+    "cer_overall": 0.045,
+    "cer_mean_per_image": 0.0453,
+    "total_edit_distance": 168,
+    "total_gt_chars": 3733,
+    "sentence_accuracy": 0.9934,
+    "sentence_hits": 300,
+    "sentence_total": 302,
+    "image_exact_match": 0.0,
+    "avg_time_ms": 34215.53,
+    "median_time_ms": 35130.85,
+    "fps_from_median": 0.03
+  },
+  "region_pipeline": {
+    "cer_overall": 0.0536,
+    "cer_mean_per_image": 0.0533,
+    "total_edit_distance": 200,
+    "total_gt_chars": 3733,
+    "sentence_accuracy": 0.8245,
+    "sentence_hits": 249,
+    "sentence_total": 302,
+    "image_exact_match": 0.0,
+    "avg_regions_per_image": 11.62,
+    "avg_ocr_time_ms": 39924.61,
+    "median_ocr_time_ms": 43559.04,
+    "avg_detection_ms": 234.39,
+    "avg_end_to_end_ms": 40159.0,
+    "end_to_end_fps": 0.02,
+    "note": "end_to_end = YOLO 检测中位耗时（来自 metrics_yolo.json）+ 各区域 OCR 耗时之和。"
+  },
+  "comparison": {
+    "cer_absolute_drop": -0.0086,
+    "cer_relative_drop_pct": -19.11,
+    "sentence_accuracy_gain_pct": -16.89,
+    "time_cost_ratio": 1.17,
+    "note": "CER 越低越好；时间比 = 区域路线 OCR 总耗时 / 整图 OCR 耗时（不含检测）。"
+  },
+  "per_image": [
+    {
+      "id": "doc_0024",
+      "hard_case": null,
+      "gt_chars": 500,
+      "gt_lines": 39,
+      "full_image": {
+        "cer": 0.036,
+        "edit_distance": 18,
+        "num_lines": 39,
+        "time_ms": 25811.01,
+        "line_hits": 39
+      },
+      "region_pipeline": {
+        "cer": 0.016,
+        "edit_distance": 8,
+        "num_regions": 12,
+        "num_lines": 39,
+        "ocr_time_ms": 46549.84,
+        "line_hits": 32
+      }
+    },
+    {
+      "id": "doc_0025",
+      "hard_case": null,
+      "gt_chars": 411,
+      "gt_lines": 35,
+      "full_image": {
+        "cer": 0.0438,
+        "edit_distance": 18,
+        "num_lines": 35,
+        "time_ms": 34669.47,
+        "line_hits": 35
+      },
+      "region_pipeline": {
+        "cer": 0.0219,
+        "edit_distance": 9,
+        "num_regions": 10,
+        "num_lines": 35,
+        "ocr_time_ms": 36455.77,
+        "line_hits": 29
+      }
+    },
+    {
+      "id": "doc_0026",
+      "hard_case": "rotation",
+      "gt_chars": 458,
+      "gt_lines": 37,
+      "full_image": {
+        "cer": 0.1114,
+        "edit_distance": 51,
+        "num_lines": 38,
+        "time_ms": 32600.13,
+        "line_hits": 36
+      },
+      "region_pipeline": {
+        "cer": 0.1965,
+        "edit_distance": 90,
+        "num_regions": 12,
+        "num_lines": 38,
+        "ocr_time_ms": 37717.61,
+        "line_hits": 29
+      }
+    },
+    {
+      "id": "doc_0027",
+      "hard_case": null,
+      "gt_chars": 494,
+      "gt_lines": 39,
+      "full_image": {
+        "cer": 0.0364,
+        "edit_distance": 18,
+        "num_lines": 39,
+        "time_ms": 36614.46,
+        "line_hits": 39
+      },
+      "region_pipeline": {
+        "cer": 0.0182,
+        "edit_distance": 9,
+        "num_regions": 12,
+        "num_lines": 39,
+        "ocr_time_ms": 47280.92,
+        "line_hits": 31
+      }
+    },
+    {
+      "id": "doc_0028",
+      "hard_case": null,
+      "gt_chars": 488,
+      "gt_lines": 39,
+      "full_image": {
+        "cer": 0.0389,
+        "edit_distance": 19,
+        "num_lines": 40,
+        "time_ms": 40938.98,
+        "line_hits": 39
+      },
+      "region_pipeline": {
+        "cer": 0.0143,
+        "edit_distance": 7,
+        "num_regions": 12,
+        "num_lines": 39,
+        "ocr_time_ms": 40568.23,
+        "line_hits": 33
+      }
+    },
+    {
+      "id": "doc_0029",
+      "hard_case": null,
+      "gt_chars": 442,
+      "gt_lines": 37,
+      "full_image": {
+        "cer": 0.043,
+        "edit_distance": 19,
+        "num_lines": 38,
+        "time_ms": 52211.84,
+        "line_hits": 37
+      },
+      "region_pipeline": {
+        "cer": 0.009,
+        "edit_distance": 4,
+        "num_regions": 11,
+        "num_lines": 37,
+        "ocr_time_ms": 48179.56,
+        "line_hits": 33
+      }
+    },
+    {
+      "id": "doc_0030",
+      "hard_case": "stamp_occlusion",
+      "gt_chars": 493,
+      "gt_lines": 39,
+      "full_image": {
+        "cer": 0.0264,
+        "edit_distance": 13,
+        "num_lines": 39,
+        "time_ms": 35592.23,
+        "line_hits": 38
+      },
+      "region_pipeline": {
+        "cer": 0.1258,
+        "edit_distance": 62,
+        "num_regions": 13,
+        "num_lines": 45,
+        "ocr_time_ms": 46592.98,
+        "line_hits": 31
+      }
+    },
+    {
+      "id": "doc_0031",
+      "hard_case": null,
+      "gt_chars": 447,
+      "gt_lines": 37,
+      "full_image": {
+        "cer": 0.0268,
+        "edit_distance": 12,
+        "num_lines": 37,
+        "time_ms": 15286.1,
+        "line_hits": 37
+      },
+      "region_pipeline": {
+        "cer": 0.0246,
+        "edit_distance": 11,
+        "num_regions": 11,
+        "num_lines": 37,
+        "ocr_time_ms": 16052.0,
+        "line_hits": 31
+      }
+    }
+  ],
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "paddle": "3.3.1",
+    "paddleocr": "3.7.0",
+    "device": "cpu",
+    "mkldnn": false,
+    "note": "mkldnn=False 是为绕过 Paddle 3.3.1 + PaddleOCR 3.7 的 oneDNN/PIR bug。"
+  }
+}
