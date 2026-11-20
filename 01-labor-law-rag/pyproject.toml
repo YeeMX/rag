@@ -1,0 +1,48 @@
+[project]
+name = "labor-law-rag"
+version = "1.0.0"
+description = "Intelligent Labor Law Consultation System based on RAG & Multi-Channel Recall"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "YeeMX" }]
+keywords = ["rag", "legal", "langchain", "chromadb", "retrieval", "bm25", "rrf"]
+
+dependencies = [
+    "torch>=2.2",                    # CPU 版即可
+    "sentence-transformers>=3.0",
+    "chromadb>=0.5",
+    "rank-bm25>=0.2.2",
+    "langchain>=0.3",
+    "langchain-community>=0.3",
+    "langchain-openai>=0.2",
+    "openai>=1.40",
+    "chainlit>=2.0",
+    "pytest>=8.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+labor-law-rag = "lrs.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q -m 'not integration'"
+markers = [
+    "integration: 需要下载 BGE 模型的集成测试（pytest -m integration 运行）",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

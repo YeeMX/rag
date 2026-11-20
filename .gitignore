@@ -1,0 +1,44 @@
+# 虚拟环境（本机用，不提交）
+.venv-rag/
+.venv-vision/
+.venv-paddle/
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# 模型权重与缓存（体积大，按各项目 README 自行下载/训练）
+*.pt
+*.pth
+*.onnx
+*.safetensors
+.cache/
+.hf/
+.cache/huggingface/
+
+# 运行产物
+*.log
+!data/eval/eval_run.log
+data/chroma/
+data/index/
+data/runs/
+03-vision-ocr-demo/runs/
+03-vision-ocr-demo/data/images/
+03-vision-ocr-demo/data/labels/
+03-vision-ocr-demo/_tmp_probe/
+03-vision-ocr-demo/tests/_probe_*.py
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 与本作品集无关的本地项目
+ai-town/

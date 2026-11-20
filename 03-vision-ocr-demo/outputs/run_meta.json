@@ -1,0 +1,90 @@
+{
+  "started_at": "2026-11-21 02:29:36",
+  "finished_at": "2026-11-21 02:40:32",
+  "total_seconds": 656.1,
+  "command": "D:\\Vibe Coding Projects\\.venv-vision\\Scripts\\python.exe run_demo.py --skip-train",
+  "steps": [
+    {
+      "name": "yolo_detect",
+      "cmd": [
+        "D:\\Vibe Coding Projects\\.venv-vision\\Scripts\\python.exe",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\src\\yolo_detect.py",
+        "--stage",
+        "all",
+        "--data-dir",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\data",
+        "--out",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\outputs",
+        "--epochs",
+        "50",
+        "--imgsz",
+        "640",
+        "--batch",
+        "8",
+        "--seed",
+        "0",
+        "--split",
+        "val",
+        "--speed-runs",
+        "15",
+        "--skip-train"
+      ],
+      "seconds": 23.9,
+      "returncode": 0
+    },
+    {
+      "name": "ocr_paddle",
+      "cmd": [
+        "D:\\Vibe Coding Projects\\.venv-paddle\\Scripts\\python.exe",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\src\\ocr_paddle.py",
+        "--data-dir",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\data",
+        "--out",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\outputs",
+        "--split",
+        "val",
+        "--det-model",
+        "PP-OCRv5_mobile_det",
+        "--rec-model",
+        "PP-OCRv5_mobile_rec"
+      ],
+      "seconds": 631.8,
+      "returncode": 0
+    },
+    {
+      "name": "extract",
+      "cmd": [
+        "D:\\Vibe Coding Projects\\.venv-vision\\Scripts\\python.exe",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\src\\extract.py",
+        "--data-dir",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\data",
+        "--out",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\outputs",
+        "--split",
+        "val"
+      ],
+      "seconds": 0.1,
+      "returncode": 0
+    },
+    {
+      "name": "make_report",
+      "cmd": [
+        "D:\\Vibe Coding Projects\\.venv-vision\\Scripts\\python.exe",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\scripts\\make_report.py",
+        "--data-dir",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\data",
+        "--out",
+        "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\outputs"
+      ],
+      "seconds": 0.2,
+      "returncode": 0
+    }
+  ],
+  "python": {
+    "vision": "D:\\Vibe Coding Projects\\.venv-vision\\Scripts\\python.exe",
+    "paddle": "D:\\Vibe Coding Projects\\.venv-paddle\\Scripts\\python.exe"
+  },
+  "platform": "Windows-10-10.0.26200-SP0",
+  "hardware_note": "CPU only（无 GPU）",
+  "skip_train": true
+}

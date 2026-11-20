@@ -1,0 +1,33 @@
+{
+  "note": "法条原文来自公开整理的法律文本仓库，仅用于检索实验，不作为法律意见。",
+  "files": [
+    {
+      "law": "中华人民共和国劳动合同法",
+      "law_id": "lcl",
+      "source": "https://github.com/FFMRyan/Chinese-Labor-Law/blob/master/中华人民共和国劳动合同法.md",
+      "preamble": "（2007年6月29日第十届全国人民代表大会常务委员会第二十八次会议通过，根据2012年12月28日第十一届全国人民代表大会常务委员会第三十次会议《关于修改〈中华人民共和国劳动合同法〉的决定》修正）",
+      "article_count": 98
+    },
+    {
+      "law": "中华人民共和国劳动法",
+      "law_id": "ll",
+      "source": "https://github.com/FFMRyan/Chinese-Labor-Law/blob/master/中华人民共和国劳动法.md",
+      "preamble": "（1994年7月5日第八届全国人民代表大会常务委员会第八次会议通过 根据2009年8月27日第十一届全国人民代表大会常务委员会第十次会议《关于修改部分法律的决定》第一次修正 根据2018年12月29日第十三届全国人民代表大会常务委员会第七次会议《关于修改〈中华人民共和国劳动法〉等七部法律的决定》第二次修正）",
+      "article_count": 107
+    },
+    {
+      "law": "中华人民共和国劳动争议调解仲裁法",
+      "law_id": "lda",
+      "source": "https://github.com/FFMRyan/Chinese-Labor-Law/blob/master/中华人民共和国劳动争议调解仲裁法.md",
+      "preamble": "（2007年12月29日第十届全国人民代表大会常务委员会第三十一次会议通过）",
+      "article_count": 54
+    },
+    {
+      "law": "中华人民共和国社会保险法",
+      "law_id": "sil",
+      "source": "https://github.com/FFMRyan/Chinese-Labor-Law/blob/master/中华人民共和国社会保险法.md",
+      "preamble": "（2010年10月28日第十一届全国人民代表大会常务委员会第十七次会议通过，根据2018年12月29日第十三届全国人民代表大会常务委员会第七次会议《关于修改〈中华人民共和国社会保险法〉的决定》修正）",
+      "article_count": 98
+    }
+  ]
+}

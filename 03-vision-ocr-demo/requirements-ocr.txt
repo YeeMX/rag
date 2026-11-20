@@ -1,0 +1,11 @@
+﻿# PaddleOCR 环境（Python 3.11，建议独立 venv）
+# 本机实际安装版本（CPU only）：
+#   paddlepaddle 3.3.1 / paddleocr 3.7.0 / numpy 2.3.5 / Python 3.11.9
+
+# 安装（CPU）：
+#   pip install paddlepaddle==3.3.1
+#   pip install paddleocr==3.7.0
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+numpy
+Pillow

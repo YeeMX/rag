@@ -1,0 +1,14 @@
+﻿# YOLO 版面检测环境（Python 3.11）
+# 本机实际安装版本（CPU only）：
+#   ultralytics 8.4.216 / torch 2.14.1+cpu / opencv-python 5.1.0 / numpy 2.4.6
+
+# 安装（CPU）：
+#   pip install ultralytics==8.4.216
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu   # 按需选择版本
+ultralytics==8.4.216
+torch
+torchvision
+opencv-python
+numpy
+Pillow
+pyyaml

@@ -1,0 +1,14 @@
+# 运行依赖（也可直接用 pip install -e .）
+# Python 3.11 / Windows 实测；torch 为 CPU 版即可
+torch>=2.2
+sentence-transformers>=3.0
+chromadb>=0.5
+rank-bm25>=0.2.2
+langchain>=0.3
+langchain-community>=0.3
+langchain-text-splitters>=0.3
+langchain-openai>=0.2
+openai>=1.40
+chainlit>=2.0
+pytest>=8.0
+pyyaml>=6.0

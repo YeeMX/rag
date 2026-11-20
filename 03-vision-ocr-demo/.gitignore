@@ -1,0 +1,32 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv*/
+.pytest_cache/
+
+# --- 模型权重 / 训练产物（体积大、可重新训练） ---
+*.pt
+*.onnx
+*.engine
+runs/
+models/
+
+# --- 合成数据（由 scripts/make_dataset.py + 固定 seed 可完整复现） ---
+data/images/
+data/labels/
+data/annotations.json
+data/data.yaml
+
+# --- 临时文件 / 探测脚本产物 / 日志 ---
+_tmp*/
+tmp/
+*.log
+*.tmp
+
+# --- 区域裁剪中间结果（可由 OCR 流水线重新生成） ---
+outputs/crops/
+
+# --- 编辑器 ---
+.idea/
+.vscode/
+*.swp

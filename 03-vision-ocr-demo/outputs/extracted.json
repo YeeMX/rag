@@ -1,0 +1,913 @@
+{
+  "config": {
+    "source_texts": "outputs\\ocr_texts.json",
+    "split": "val",
+    "pipeline": "YOLO 区域裁剪 → PaddleOCR → 规则抽取",
+    "method": "正则规则（不依赖 LLM / 第三方 NLP 库）"
+  },
+  "images": [
+    {
+      "id": "doc_0024",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "武汉长江物流有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9506,
+            "line": "甲方（用人单位）：武汉长江物流有限公司"
+          }
+        },
+        "party_b": {
+          "value": "王强",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9828,
+            "line": "乙方（劳动者）：王强"
+          }
+        },
+        "contract_years": {
+          "value": 1,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.823,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2022年02月20日起至2023年02"
+          }
+        },
+        "monthly_salary": {
+          "value": 15000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.8623,
+            "line": "三条甲方于每月15日前以货币形式支付乙方工资，月工资为人民币15000元，且不低"
+          }
+        },
+        "probation_months": {
+          "value": 2,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8334,
+            "line": "第四条乙方试用期为2个月，试用期月工资为人民币12000元，试用期包含在劳动合同期"
+          }
+        },
+        "probation_salary": {
+          "value": 12000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8334,
+            "line": "第四条乙方试用期为2个月，试用期月工资为人民币12000元，试用期包含在劳动合同期"
+          }
+        },
+        "job": {
+          "value": "财务会计",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8762,
+            "line": "第二条乙方同意在甲方从事财务会计岗位工作，工作地点为北京市，甲方可根据生产经"
+          }
+        },
+        "sign_date": {
+          "value": "2022-01-31",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 11,
+            "conf": 0.9492,
+            "line": "签订日期：2022年01月31日"
+          }
+        },
+        "contract_start": {
+          "value": "2022-02-20",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.823,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2022年02月20日起至2023年02\n月19日止。"
+          }
+        },
+        "contract_end": {
+          "value": "2023-02-19",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.823,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2022年02月20日起至2023年02\n月19日止。"
+          }
+        },
+        "stamp_company": {
+          "value": "长江物流",
+          "source": {
+            "class_name": "stamp",
+            "rank": 10,
+            "conf": 0.9854,
+            "line": "长江物流"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同文本",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9565,
+            "line": "劳动合同文本"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同文本\n甲方（用人单位）：武汉长江物流有限公司\n住所：成都市武侯区天府大道666号\n法定代表人：张建国\n乙方（劳动者）：王强\n身份证号：303150199606132995\n住所：上海市浦东新区张江路168号2幢\n第一条本合同为固定期限劳动合同，合同期限为1年，自2022年02月20日起至2023年02\n月19日止。\n第二条乙方同意在甲方从事财务会计岗位工作，工作地点为北京市，甲方可根据生产经\n营需要依法调整乙方的工作岗位。\n三条甲方于每月15日前以货币形式支付乙方工资，月工资为人民币15000元，且不低\n当地最低工资标准。\n第四条乙方试用期为2个月，试用期月工资为人民币12000元，试"
+    },
+    {
+      "id": "doc_0025",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "广州云启信息技术有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9339,
+            "line": "甲方（用人单位）：广州云启信息技术有限公司"
+          }
+        },
+        "party_b": {
+          "value": "陈晨",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9564,
+            "line": "乙方（劳动者）：陈晨"
+          }
+        },
+        "contract_years": {
+          "value": 3,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.8238,
+            "line": "一条本合同为固定期限劳动合同，合同期限为3年，自2023年06月22日起至2026年"
+          }
+        },
+        "monthly_salary": {
+          "value": 20000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.8446,
+            "line": "三条甲方于每月20日前以货币形式支付乙方工资，月工资为人民币20000元，且不"
+          }
+        },
+        "probation_months": {
+          "value": 6,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8731,
+            "line": "1条乙方试用期为6个月，试用期月工资为人民币16000元，试用期包含在劳动合同"
+          }
+        },
+        "probation_salary": {
+          "value": 16000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8731,
+            "line": "1条乙方试用期为6个月，试用期月工资为人民币16000元，试用期包含在劳动合同"
+          }
+        },
+        "job": {
+          "value": "财务会计",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8586,
+            "line": "第二条乙方同意在甲方从事财务会计岗位工作，工作地点为上海市，甲方可根据生产"
+          }
+        },
+        "sign_date": {
+          "value": "2023-06-15",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 9,
+            "conf": 0.8715,
+            "line": "签订日期：2023年06月15日"
+          }
+        },
+        "contract_start": {
+          "value": "2023-06-22",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.8238,
+            "line": "一条本合同为固定期限劳动合同，合同期限为3年，自2023年06月22日起至2026年\n月21日止。"
+          }
+        },
+        "contract_end": {
+          "value": null,
+          "source": null
+        },
+        "stamp_company": {
+          "value": "云启信息",
+          "source": {
+            "class_name": "stamp",
+            "rank": 8,
+            "conf": 0.9892,
+            "line": "云启信息"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9626,
+            "line": "劳动合同"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同\n甲方（用人单位）：广州云启信息技术有限公司\n住所：深圳市南山区科技园南区18栋\n法定代表人：陈建华\n乙方（劳动者）：陈晨\n身份证号：340770199903141937\n住所：广州市天河区体育西路103号\n一条本合同为固定期限劳动合同，合同期限为3年，自2023年06月22日起至2026年\n月21日止。\n第二条乙方同意在甲方从事财务会计岗位工作，工作地点为上海市，甲方可根据生产\n经营需要依法调整乙方的工作岗位。\n三条甲方于每月20日前以货币形式支付乙方工资，月工资为人民币20000元，且不\n于当地最低工资标准。\n1条乙方试用期为6个月，试用期月工资为人民币16000元，试用期包含在劳"
+    },
+    {
+      "id": "doc_0026",
+      "split": "val",
+      "hard_case": "rotation",
+      "fields": {
+        "party_a": {
+          "value": "（用人单位)：北京华信科技有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9638,
+            "line": "甲方（用人单位)：北京华信科技有限公司"
+          }
+        },
+        "party_b": {
+          "value": "陈晨",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9397,
+            "line": "乙方（劳动者）：陈晨"
+          }
+        },
+        "contract_years": {
+          "value": 1,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.8014,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2025年07月25日起至2026年0"
+          }
+        },
+        "monthly_salary": {
+          "value": 15000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.7782,
+            "line": "第三条甲方于每月25日前以货币形式支付乙方工资，月工资为人民币15000元"
+          }
+        },
+        "probation_months": {
+          "value": 1,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.322,
+            "line": "方试用期为1个月，试用期月工资为人民币12000元，试用期包含在劳动合同期"
+          }
+        },
+        "probation_salary": {
+          "value": 12000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.322,
+            "line": "方试用期为1个月，试用期月工资为人民币12000元，试用期包含在劳动合同期"
+          }
+        },
+        "job": {
+          "value": "项目管理",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.7986,
+            "line": "第二条乙方同意在甲方从事项目管理岗位工作，工作地点为成都市，甲方可根据生广"
+          }
+        },
+        "sign_date": {
+          "value": "2025-07-22",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 11,
+            "conf": 0.9543,
+            "line": "签订日期：2025年07月22日"
+          }
+        },
+        "contract_start": {
+          "value": "2025-07-25",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.8014,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2025年07月25日起至2026年0\n月24日止。"
+          }
+        },
+        "contract_end": {
+          "value": null,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.8014,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为1年，自2025年07月25日起至2026年0\n月24日止。"
+          }
+        },
+        "stamp_company": {
+          "value": "华信科技",
+          "source": {
+            "class_name": "stamp",
+            "rank": 10,
+            "conf": 0.9839,
+            "line": "华信科技"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同文本",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9477,
+            "line": "劳动合同文本"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同文本\n甲方（用人单位)：北京华信科技有限公司\n住 所：北京市朝阳区建国路88号院3号楼\n法定代表人：刘德明\n乙方（劳动者）：陈晨\n身份证号：516478200011165442\n住所：深圳市南山区科技园南区18栋\n第一条本合同为固定期限劳动合同，合同期限为1年，自2025年07月25日起至2026年0\n月24日止。\n第二条乙方同意在甲方从事项目管理岗位工作，工作地点为成都市，甲方可根据生广\n营需要依法调整乙方的工作岗位。\n第三条甲方于每月25日前以货币形式支付乙方工资，月工资为人民币15000元\n于当地最低工资标准。\n方试用期为1个月，试用期月工资为人民币12000元，试用期包含在劳动"
+    },
+    {
+      "id": "doc_0027",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "北京华信科技有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9567,
+            "line": "甲方（用人单位）：北京华信科技有限公司"
+          }
+        },
+        "party_b": {
+          "value": "孙磊",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9766,
+            "line": "乙方（劳动者）：孙磊"
+          }
+        },
+        "contract_years": {
+          "value": 5,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.829,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2023年09月17日起至2028年0"
+          }
+        },
+        "monthly_salary": {
+          "value": 6500,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.8313,
+            "line": "第三条甲方于每月15日前以货币形式支付乙方工资，月工资为人民币6500元，且不低"
+          }
+        },
+        "probation_months": {
+          "value": 6,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.6515,
+            "line": "四条乙方试用期为6个月，试用期月工资为人民币5200元，试用期包含在劳动合同"
+          }
+        },
+        "probation_salary": {
+          "value": 5200,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.6515,
+            "line": "四条乙方试用期为6个月，试用期月工资为人民币5200元，试用期包含在劳动合同"
+          }
+        },
+        "job": {
+          "value": "软件测试",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8675,
+            "line": "二条乙方同意在甲方从事软件测试岗位工作，工作地点为杭州市，甲方可根据生产"
+          }
+        },
+        "sign_date": {
+          "value": "2023-09-13",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 11,
+            "conf": 0.9067,
+            "line": "签订日期：2023年09月13日"
+          }
+        },
+        "contract_start": {
+          "value": "2023-09-17",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.829,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2023年09月17日起至2028年0\n9月16日止。"
+          }
+        },
+        "contract_end": {
+          "value": "2028-09-16",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.829,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2023年09月17日起至2028年0\n9月16日止。"
+          }
+        },
+        "stamp_company": {
+          "value": "华信科技",
+          "source": {
+            "class_name": "stamp",
+            "rank": 10,
+            "conf": 0.9827,
+            "line": "华信科技"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9419,
+            "line": "劳动合同"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同\n甲方（用人单位）：北京华信科技有限公司\n住所：成都市武侯区天府大道666号\n法定代表人：王志刚\n乙方（劳动者）：孙磊\n身份证号：338456200210076275\n住所：南京市鼓楼区中山北路26号\n第一条本合同为固定期限劳动合同，合同期限为5年，自2023年09月17日起至2028年0\n9月16日止。\n二条乙方同意在甲方从事软件测试岗位工作，工作地点为杭州市，甲方可根据生产\n营需要依法调整乙方的工作岗位。\n第三条甲方于每月15日前以货币形式支付乙方工资，月工资为人民币6500元，且不低\n于当地最低工资标准。\n四条乙方试用期为6个月，试用期月工资为人民币5200元，试用期包含在劳动合"
+    },
+    {
+      "id": "doc_0028",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "北京华信科技有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9748,
+            "line": "甲方（用人单位）：北京华信科技有限公司"
+          }
+        },
+        "party_b": {
+          "value": "孙磊",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9684,
+            "line": "乙方（劳动者）：孙磊"
+          }
+        },
+        "contract_years": {
+          "value": 3,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.783,
+            "line": "第一条 本合同为固定期限劳动合同，合同期限为3年，自2026年10月18日起至2029年10"
+          }
+        },
+        "monthly_salary": {
+          "value": 9000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.8186,
+            "line": "第三条甲方于每月25日前以货币形式支付乙方工资，月工资为人民币9000元，且不低于"
+          }
+        },
+        "probation_months": {
+          "value": 1,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.7841,
+            "line": "四条乙方试用期为1个月，试用期月工资为人民币7200元，试用期包含在劳动合同期"
+          }
+        },
+        "probation_salary": {
+          "value": 7200,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.7841,
+            "line": "四条乙方试用期为1个月，试用期月工资为人民币7200元，试用期包含在劳动合同期"
+          }
+        },
+        "job": {
+          "value": "软件测试",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8698,
+            "line": "第二条乙方同意在甲方从事软件测试岗位工作，工作地点为深圳市，甲方可根据生产经"
+          }
+        },
+        "sign_date": {
+          "value": "2026-10-11",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 11,
+            "conf": 0.9413,
+            "line": "签订日期：2026年10月11日"
+          }
+        },
+        "contract_start": {
+          "value": "2026-10-18",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.783,
+            "line": "第一条 本合同为固定期限劳动合同，合同期限为3年，自2026年10月18日起至2029年10\n月17日止。"
+          }
+        },
+        "contract_end": {
+          "value": "2029-10-17",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.783,
+            "line": "第一条 本合同为固定期限劳动合同，合同期限为3年，自2026年10月18日起至2029年10\n月17日止。"
+          }
+        },
+        "stamp_company": {
+          "value": "华信科技",
+          "source": {
+            "class_name": "stamp",
+            "rank": 10,
+            "conf": 0.9938,
+            "line": "华信科技"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同书",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9837,
+            "line": "劳动合同书"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同书\n甲方（用人单位）：北京华信科技有限公司\n住所：成都市武侯区天府大道666号\n法定代表人：陈建华\n乙方（劳动者）：孙磊\n身份证号：224380200008256397\n住 所：杭州市西湖区文三路90号\n第一条 本合同为固定期限劳动合同，合同期限为3年，自2026年10月18日起至2029年10\n月17日止。\n第二条乙方同意在甲方从事软件测试岗位工作，工作地点为深圳市，甲方可根据生产经\n营需要依法调整乙方的工作岗位。\n第三条甲方于每月25日前以货币形式支付乙方工资，月工资为人民币9000元，且不低于\n自地最低工资标准。\n四条乙方试用期为1个月，试用期月工资为人民币7200元，试用期包含"
+    },
+    {
+      "id": "doc_0029",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "上海鼎盛商贸有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9671,
+            "line": "甲方（用人单位）：上海鼎盛商贸有限公司"
+          }
+        },
+        "party_b": {
+          "value": "徐静",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9423,
+            "line": "乙方（劳动者）：徐静"
+          }
+        },
+        "contract_years": {
+          "value": 2,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7529,
+            "line": "一条本合同为固定期限劳动合同，合同期限为2年，自2022年05月24日起至2024年05"
+          }
+        },
+        "monthly_salary": {
+          "value": 6500,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.7851,
+            "line": "第三条甲方于每月5日前以货币形式支付乙方工资，月工资为人民币6500元，且不低于"
+          }
+        },
+        "probation_months": {
+          "value": 1,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8232,
+            "line": "第四条乙方试用期为1个月，试用期月工资为人民币5200元，试用期包含在劳动合同期"
+          }
+        },
+        "probation_salary": {
+          "value": 5200,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8232,
+            "line": "第四条乙方试用期为1个月，试用期月工资为人民币5200元，试用期包含在劳动合同期"
+          }
+        },
+        "job": {
+          "value": "软件测试",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8571,
+            "line": "第二条乙方同意在甲方从事软件测试岗位工作，工作地点为上海市，甲方可根据生产经"
+          }
+        },
+        "sign_date": {
+          "value": "2022-05-07",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 10,
+            "conf": 0.9555,
+            "line": "签订日期：2022年05月07日"
+          }
+        },
+        "contract_start": {
+          "value": "2022-05-24",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7529,
+            "line": "一条本合同为固定期限劳动合同，合同期限为2年，自2022年05月24日起至2024年05\n23日止。"
+          }
+        },
+        "contract_end": {
+          "value": null,
+          "source": null
+        },
+        "stamp_company": {
+          "value": "鼎盛商贸",
+          "source": {
+            "class_name": "stamp",
+            "rank": 9,
+            "conf": 0.9838,
+            "line": "鼎盛商贸"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9308,
+            "line": "劳动合同"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同\n甲方（用人单位）：上海鼎盛商贸有限公司\n住所：武汉市江汉区解放大道100号\n法定代表人：赵永强\n乙方（劳动者）：徐静\n身份证号：274774199203108699\n住所：南京市鼓楼区中山北路26号\n一条本合同为固定期限劳动合同，合同期限为2年，自2022年05月24日起至2024年05\n23日止。\n第二条乙方同意在甲方从事软件测试岗位工作，工作地点为上海市，甲方可根据生产经\n营需要依法调整乙方的工作岗位。\n第三条甲方于每月5日前以货币形式支付乙方工资，月工资为人民币6500元，且不低于\n当地最低工资标准。\n第四条乙方试用期为1个月，试用期月工资为人民币5200元，试用期包含在劳动合"
+    },
+    {
+      "id": "doc_0030",
+      "split": "val",
+      "hard_case": "stamp_occlusion",
+      "fields": {
+        "party_a": {
+          "value": "上海鼎盛商贸有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.8835,
+            "line": "甲方（用人单位）：上海鼎盛商贸有限公司"
+          }
+        },
+        "party_b": {
+          "value": "徐静",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.8861,
+            "line": "乙方（劳动者）：徐静"
+          }
+        },
+        "contract_years": {
+          "value": 5,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7957,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2026年12月08日起至2031年"
+          }
+        },
+        "monthly_salary": {
+          "value": 20000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.3123,
+            "line": "月工资为人民币20000元，且不"
+          }
+        },
+        "probation_months": {
+          "value": null,
+          "source": null
+        },
+        "probation_salary": {
+          "value": null,
+          "source": null
+        },
+        "job": {
+          "value": "软件测试",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.586,
+            "line": "第二条乙方同意在甲方从事软件测试岗位工作，工作地点为成都市，甲方可根据"
+          }
+        },
+        "sign_date": {
+          "value": "2026-11-30",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 12,
+            "conf": 0.9386,
+            "line": "签订日期：2026年11月30日"
+          }
+        },
+        "contract_start": {
+          "value": "2026-12-08",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7957,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2026年12月08日起至2031年\n12月07日止。"
+          }
+        },
+        "contract_end": {
+          "value": "2031-12-07",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7957,
+            "line": "第一条本合同为固定期限劳动合同，合同期限为5年，自2026年12月08日起至2031年\n12月07日止。"
+          }
+        },
+        "stamp_company": {
+          "value": "式支付达工资",
+          "source": {
+            "class_name": "stamp",
+            "rank": 5,
+            "conf": 0.4603,
+            "line": "式支付达工资，"
+          }
+        },
+        "document_type": {
+          "value": "劳动合同文本",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9852,
+            "line": "劳动合同文本"
+          }
+        }
+      },
+      "ocr_text_preview": "劳动合同文本\n甲方（用人单位）：上海鼎盛商贸有限公司\n住所：广州市天河区体育西路103号\n法定代表人：陈建华\n乙方（劳动者）：徐静\n身份证号：618030198611267099\n住所：武汉市江汉区解放大道100号\n第一条本合同为固定期限劳动合同，合同期限为5年，自2026年12月08日起至2031年\n12月07日止。\n第二条乙方同意在甲方从事软件测试岗位工作，工作地点为成都市，甲方可根据\n经营需要依法调整乙方的工作岗位。\n式支付达工资，\n鼎盛商贸\n公章\n+\n月工资为人民币20000元，且不\n第三条甲方于每月15日前以货币形式支付乙工资，\n月工\n低于当地最低工资标准。\n鼎盛商贸\n期为1个月，试"
+    },
+    {
+      "id": "doc_0031",
+      "split": "val",
+      "hard_case": null,
+      "fields": {
+        "party_a": {
+          "value": "武汉长江物流有限公司",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 1,
+            "conf": 0.9756,
+            "line": "甲方（用人单位）：武汉长江物流有限公司"
+          }
+        },
+        "party_b": {
+          "value": "杨帆",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 2,
+            "conf": 0.9335,
+            "line": "乙方（劳动者）：杨帆"
+          }
+        },
+        "contract_years": {
+          "value": 3,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7423,
+            "line": "条本合同为固定期限劳动合同，合同期限为3年，自2024年09月11日起至2027年0"
+          }
+        },
+        "monthly_salary": {
+          "value": 8000,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 5,
+            "conf": 0.8717,
+            "line": "三条甲方于每月20日前以货币形式支付乙方工资，月工资为人民币8000元，且不低"
+          }
+        },
+        "probation_months": {
+          "value": 3,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8649,
+            "line": "第四条乙方试用期为3个月，试用期月工资为人民币6400元，试用期包含在劳动合同"
+          }
+        },
+        "probation_salary": {
+          "value": 6400,
+          "source": {
+            "class_name": "paragraph",
+            "rank": 6,
+            "conf": 0.8649,
+            "line": "第四条乙方试用期为3个月，试用期月工资为人民币6400元，试用期包含在劳动合同"
+          }
+        },
+        "job": {
+          "value": "项目管理",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 4,
+            "conf": 0.8871,
+            "line": "条乙方同意在甲方从事项目管理岗位工作，工作地点为北京市，甲方可根据生产"
+          }
+        },
+        "sign_date": {
+          "value": "2024-09-02",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 10,
+            "conf": 0.9423,
+            "line": "签订日期：2024年09月02日"
+          }
+        },
+        "contract_start": {
+          "value": "2024-09-11",
+          "source": {
+            "class_name": "paragraph",
+            "rank": 3,
+            "conf": 0.7423,
+            "line": "条本合同为固定期限劳动合同，合同期限为3年，自2024年09月11日起至2027年0\n0日止。"
+          }
+        },
+        "contract_end": {
+          "value": null,
+          "source": null
+        },
+        "stamp_company": {
+          "value": "长江物流",
+          "source": {
+            "class_name": "stamp",
+            "rank": 9,
+            "conf": 0.9899,
+            "line": "长江物流"
+          }
+        },
+        "document_type": {
+          "value": "聘用合同书",
+          "source": {
+            "class_name": "title",
+            "rank": 0,
+            "conf": 0.9837,
+            "line": "聘用合同书"
+          }
+        }
+      },
+      "ocr_text_preview": "聘用合同书\n甲方（用人单位）：武汉长江物流有限公司\n住所：南京市鼓楼区中山北路26号\n法定代表人：李国强\n乙方（劳动者）：杨帆\n身份证号：134021199303063026\n住所：深圳市南山区科技园南区18栋\n条本合同为固定期限劳动合同，合同期限为3年，自2024年09月11日起至2027年0\n0日止。\n条乙方同意在甲方从事项目管理岗位工作，工作地点为北京市，甲方可根据生产\n需要依法调整乙方的工作岗位。\n三条甲方于每月20日前以货币形式支付乙方工资，月工资为人民币8000元，且不低\n当地最低工资标准。\n第四条乙方试用期为3个月，试用期月工资为人民币6400元，试用期包含在劳动合同\n期限内。\n"
+    }
+  ]
+}

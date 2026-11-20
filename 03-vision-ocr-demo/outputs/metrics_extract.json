@@ -1,0 +1,589 @@
+{
+  "fields": {
+    "party_a": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "party_b": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "contract_years": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "contract_start": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "contract_end": {
+      "accuracy": 0.5,
+      "correct": 4,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "monthly_salary": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "probation_months": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "job": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "sign_date": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "in_headline_set": true
+    },
+    "probation_salary": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "in_headline_set": false
+    },
+    "stamp_company": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "in_headline_set": false
+    }
+  },
+  "headline_field_accuracy": 0.9167,
+  "headline_micro": {
+    "correct": 66,
+    "total": 72
+  },
+  "image_all_fields_correct": 0.375,
+  "num_images": 8,
+  "per_image": [
+    {
+      "id": "doc_0024",
+      "hard_case": null,
+      "num_correct": 9,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "武汉长江物流有限公司",
+          "truth": "武汉长江物流有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "王强",
+          "truth": "王强",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 1,
+          "truth": 1,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2022-02-20",
+          "truth": "2022年02月20日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": "2023-02-19",
+          "truth": "2023年02月19日",
+          "correct": true
+        },
+        "monthly_salary": {
+          "extracted": 15000,
+          "truth": 15000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 2,
+          "truth": 2,
+          "correct": true
+        },
+        "job": {
+          "extracted": "财务会计",
+          "truth": "财务会计",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2022-01-31",
+          "truth": "2022年01月31日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 12000,
+          "truth": 12000,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "长江物流",
+          "truth": "长江物流",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0025",
+      "hard_case": null,
+      "num_correct": 8,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "广州云启信息技术有限公司",
+          "truth": "广州云启信息技术有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "陈晨",
+          "truth": "陈晨",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 3,
+          "truth": 3,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2023-06-22",
+          "truth": "2023年06月22日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": null,
+          "truth": "2026年06月21日",
+          "correct": false
+        },
+        "monthly_salary": {
+          "extracted": 20000,
+          "truth": 20000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 6,
+          "truth": 6,
+          "correct": true
+        },
+        "job": {
+          "extracted": "财务会计",
+          "truth": "财务会计",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2023-06-15",
+          "truth": "2023年06月15日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 16000,
+          "truth": 16000,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "云启信息",
+          "truth": "云启信息",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0026",
+      "hard_case": "rotation",
+      "num_correct": 7,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "（用人单位)：北京华信科技有限公司",
+          "truth": "北京华信科技有限公司",
+          "correct": false
+        },
+        "party_b": {
+          "extracted": "陈晨",
+          "truth": "陈晨",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 1,
+          "truth": 1,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2025-07-25",
+          "truth": "2025年07月25日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": null,
+          "truth": "2026年07月24日",
+          "correct": false
+        },
+        "monthly_salary": {
+          "extracted": 15000,
+          "truth": 15000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 1,
+          "truth": 1,
+          "correct": true
+        },
+        "job": {
+          "extracted": "项目管理",
+          "truth": "项目管理",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2025-07-22",
+          "truth": "2025年07月22日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 12000,
+          "truth": 12000,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "华信科技",
+          "truth": "华信科技",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0027",
+      "hard_case": null,
+      "num_correct": 9,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "北京华信科技有限公司",
+          "truth": "北京华信科技有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "孙磊",
+          "truth": "孙磊",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 5,
+          "truth": 5,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2023-09-17",
+          "truth": "2023年09月17日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": "2028-09-16",
+          "truth": "2028年09月16日",
+          "correct": true
+        },
+        "monthly_salary": {
+          "extracted": 6500,
+          "truth": 6500,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 6,
+          "truth": 6,
+          "correct": true
+        },
+        "job": {
+          "extracted": "软件测试",
+          "truth": "软件测试",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2023-09-13",
+          "truth": "2023年09月13日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 5200,
+          "truth": 5200,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "华信科技",
+          "truth": "华信科技",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0028",
+      "hard_case": null,
+      "num_correct": 9,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "北京华信科技有限公司",
+          "truth": "北京华信科技有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "孙磊",
+          "truth": "孙磊",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 3,
+          "truth": 3,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2026-10-18",
+          "truth": "2026年10月18日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": "2029-10-17",
+          "truth": "2029年10月17日",
+          "correct": true
+        },
+        "monthly_salary": {
+          "extracted": 9000,
+          "truth": 9000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 1,
+          "truth": 1,
+          "correct": true
+        },
+        "job": {
+          "extracted": "软件测试",
+          "truth": "软件测试",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2026-10-11",
+          "truth": "2026年10月11日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 7200,
+          "truth": 7200,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "华信科技",
+          "truth": "华信科技",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0029",
+      "hard_case": null,
+      "num_correct": 8,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "上海鼎盛商贸有限公司",
+          "truth": "上海鼎盛商贸有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "徐静",
+          "truth": "徐静",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 2,
+          "truth": 2,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2022-05-24",
+          "truth": "2022年05月24日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": null,
+          "truth": "2024年05月23日",
+          "correct": false
+        },
+        "monthly_salary": {
+          "extracted": 6500,
+          "truth": 6500,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 1,
+          "truth": 1,
+          "correct": true
+        },
+        "job": {
+          "extracted": "软件测试",
+          "truth": "软件测试",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2022-05-07",
+          "truth": "2022年05月07日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 5200,
+          "truth": 5200,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "鼎盛商贸",
+          "truth": "鼎盛商贸",
+          "correct": true
+        }
+      }
+    },
+    {
+      "id": "doc_0030",
+      "hard_case": "stamp_occlusion",
+      "num_correct": 8,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "上海鼎盛商贸有限公司",
+          "truth": "上海鼎盛商贸有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "徐静",
+          "truth": "徐静",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 5,
+          "truth": 5,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2026-12-08",
+          "truth": "2026年12月08日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": "2031-12-07",
+          "truth": "2031年12月07日",
+          "correct": true
+        },
+        "monthly_salary": {
+          "extracted": 20000,
+          "truth": 20000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": null,
+          "truth": 1,
+          "correct": false
+        },
+        "job": {
+          "extracted": "软件测试",
+          "truth": "软件测试",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2026-11-30",
+          "truth": "2026年11月30日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": null,
+          "truth": 16000,
+          "correct": false
+        },
+        "stamp_company": {
+          "extracted": "式支付达工资",
+          "truth": "鼎盛商贸",
+          "correct": false
+        }
+      }
+    },
+    {
+      "id": "doc_0031",
+      "hard_case": null,
+      "num_correct": 8,
+      "num_fields": 9,
+      "checks": {
+        "party_a": {
+          "extracted": "武汉长江物流有限公司",
+          "truth": "武汉长江物流有限公司",
+          "correct": true
+        },
+        "party_b": {
+          "extracted": "杨帆",
+          "truth": "杨帆",
+          "correct": true
+        },
+        "contract_years": {
+          "extracted": 3,
+          "truth": 3,
+          "correct": true
+        },
+        "contract_start": {
+          "extracted": "2024-09-11",
+          "truth": "2024年09月11日",
+          "correct": true
+        },
+        "contract_end": {
+          "extracted": null,
+          "truth": "2027年09月10日",
+          "correct": false
+        },
+        "monthly_salary": {
+          "extracted": 8000,
+          "truth": 8000,
+          "correct": true
+        },
+        "probation_months": {
+          "extracted": 3,
+          "truth": 3,
+          "correct": true
+        },
+        "job": {
+          "extracted": "项目管理",
+          "truth": "项目管理",
+          "correct": true
+        },
+        "sign_date": {
+          "extracted": "2024-09-02",
+          "truth": "2024年09月02日",
+          "correct": true
+        },
+        "probation_salary": {
+          "extracted": 6400,
+          "truth": 6400,
+          "correct": true
+        },
+        "stamp_company": {
+          "extracted": "长江物流",
+          "truth": "长江物流",
+          "correct": true
+        }
+      }
+    }
+  ],
+  "config": {
+    "source_texts": "outputs\\ocr_texts.json",
+    "split": "val",
+    "pipeline": "YOLO 区域裁剪 → PaddleOCR → 规则抽取",
+    "method": "正则规则（不依赖 LLM / 第三方 NLP 库）"
+  }
+}

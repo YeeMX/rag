@@ -1,0 +1,48 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ---- 虚拟环境（统一使用仓库根目录的 .venv-rag，不提交）----
+.venv/
+.venv-*/
+venv/
+
+# ---- 环境变量与密钥 ----
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ---- 日志与临时文件 ----
+*.log
+logs/
+tmp/
+*.tmp
+
+# ---- 模型权重 / 缓存 / 大文件（本项目不产生，但防止误提交）----
+.cache/
+models/
+.huggingface/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.ckpt
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
