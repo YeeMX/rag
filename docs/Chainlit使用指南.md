@@ -148,6 +148,7 @@ $env:HF_HUB_DISABLE_XET = "1"
 | UI 里回答没有"法律推理" | Mock 是抽取式拼接 | 同上，真实模型才有推理能力 |
 | 中文显示乱码 | 终端编码问题（仅 CLI） | 设置 `$env:PYTHONIOENCODING="utf-8"` |
 | 想换端口 | 8000 被占用 | 加 `--port 8001` |
+| `chainlit.exe` 移动文件夹后失效（找不到 python 或报错） | venv 的 exe 启动器把解释器绝对路径编译进去了，不是配置项 | ① 改用 `python -m chainlit run ...`（推荐，随便移动都能跑）；② 或重新生成 exe：`.venv-rag\Scripts\python.exe -m pip install --force-reinstall --no-deps chainlit==2.12.0` |
 
 ---
 
