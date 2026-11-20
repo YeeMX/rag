@@ -846,10 +846,11 @@ def generate_dataset(out_dir: Path, num: int, num_train: int, seed: int) -> dict
         json.dumps(annotations, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    # ultralytics 数据集配置（绝对路径，避免工作目录影响）
+    # ultralytics 数据集配置：path 写相对值，运行时由 yolo_detect.py 修正为绝对路径，
+    # 这样整个项目目录可以随意移动/复制（避免把本机绝对路径写死进仓库）。
     data_yaml = (
         f"# 由 scripts/make_dataset.py 自动生成\n"
-        f"path: {out_dir.resolve().as_posix()}\n"
+        f"path: .\n"
         f"train: images/train\n"
         f"val: images/val\n"
         f"names:\n"

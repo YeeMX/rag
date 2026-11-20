@@ -55,3 +55,7 @@ setup_*.log
 # Chainlit 运行时目录（应生成在 01-labor-law-rag/ 下，这里兜底忽略）
 .chainlit/
 .files/
+
+# 视觉 demo 运行时生成的数据集配置（绝对路径）
+**.data_runtime.yaml
+.data_runtime.yaml

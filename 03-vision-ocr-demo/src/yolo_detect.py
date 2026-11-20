@@ -685,12 +685,42 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+def normalize_data_yaml(data_dir: Path) -> Path:
+    """生成一份“运行时”数据集配置（.data_runtime.yaml），返回给 ultralytics 使用。
+
+    背景：数据集目录可能被整体移动/复制（例如作品集改名、换机器），而 data.yaml 里如果
+    写死了旧绝对路径，ultralytics 会报 "images not found"。
+    这里不改动被 git 跟踪的 data.yaml（保持可移植的相对 path），而是把它复制到
+    .data_runtime.yaml 并把 path 修正为当前数据目录的绝对路径，运行时专用。
+    """
+    yaml_path = data_dir / "data.yaml"
+    if not yaml_path.is_file():
+        raise FileNotFoundError(
+            f"找不到数据集配置 {yaml_path}；请先运行 scripts/make_dataset.py 生成数据集"
+        )
+    desired = f"path: {data_dir.resolve().as_posix()}"
+    lines = yaml_path.read_text(encoding="utf-8").splitlines()
+    out_lines: list[str] = []
+    replaced = False
+    for line in lines:
+        if line.strip().startswith("path:"):
+            out_lines.append(desired)
+            replaced = True
+        else:
+            out_lines.append(line)
+    if not replaced:
+        out_lines.insert(1, desired)
+    runtime_yaml = data_dir / ".data_runtime.yaml"
+    runtime_yaml.write_text("\n".join(out_lines) + "\n", encoding="utf-8")
+    return runtime_yaml
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
     data_dir: Path = args.data_dir
     out_dir: Path = args.out
     out_dir.mkdir(parents=True, exist_ok=True)
-    data_yaml = data_dir / "data.yaml"
+    data_yaml = normalize_data_yaml(data_dir)
     annotations = load_annotations(data_dir)
     weights: Path = args.weights
 
