@@ -65,7 +65,7 @@ cd ../03-vision-ocr-demo
 python run_demo.py --skip-train
 ```
 
-**文档入口**：[`docs/`](docs/交付说明.md) —— 使用指南（含 Chainlit 演示问题）、评测结果汇总、生成结果快照。
+**文档入口**：[`docs/`](docs/交付说明.md) —— 使用指南（Chainlit 演示问题、项目②/③ 运行步骤）、评测结果汇总、生成结果快照。
 
 ## 关于简历/毕设的说明
 

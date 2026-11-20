@@ -53,10 +53,10 @@
       }
     },
     "speed_ms_per_image": {
-      "preprocess": 4.01,
-      "inference": 149.524,
+      "preprocess": 0.69,
+      "inference": 35.664,
       "loss": 0.0,
-      "postprocess": 39.192
+      "postprocess": 13.813
     }
   },
   "manual_iou_eval": {
@@ -660,12 +660,12 @@
     "runs": 15,
     "warmup": 3,
     "imgsz": 640,
-    "median_ms": 234.39,
-    "mean_ms": 239.13,
-    "p90_ms": 369.7,
-    "min_ms": 109.28,
-    "max_ms": 391.62,
-    "fps_from_median": 4.27,
+    "median_ms": 50.06,
+    "mean_ms": 50.39,
+    "p90_ms": 54.7,
+    "min_ms": 44.3,
+    "max_ms": 57.32,
+    "fps_from_median": 19.98,
     "device": "cpu",
     "note": "端到端耗时 = 预处理 + 前向 + NMS/后处理；单进程单张，不含批量优势。"
   }
