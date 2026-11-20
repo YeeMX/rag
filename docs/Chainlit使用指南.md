@@ -19,6 +19,13 @@ $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会
 & "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
 
+打开后应该看到下面这个界面（真实截图）：
+
+![Chainlit 界面](生成结果/images/chainlit界面.png)
+
+> 首次打开需要 **20~30 秒**加载 BGE + reranker 模型（日志会打印「检索服务就绪」）；
+> 服务已做全局缓存，之后再打开/刷新页面即可秒开。
+
 ---
 
 ## 2. 输入什么才会有输出
@@ -135,6 +142,7 @@ $env:HF_HUB_DISABLE_XET = "1"
 | 现象 | 原因 | 解决 |
 |---|---|---|
 | 页面打不开 / 连接被拒绝 | Chainlit 服务没启动或已退出 | 按第 1 节命令重新启动 |
+| 页面显示 `No module named 'lrs'` | Chainlit 2.12 加载 app 后会 `sys.path.pop(0)`，若 app 用 `insert(0, src)` 会把自己的路径弹掉 | **本仓库已修复**（改为 `sys.path.append`）；自建项目可设 `$env:PYTHONPATH="src"` 后再启动 |
 | 第一次发消息要等 5~10 秒 | 首次加载 BGE + reranker 模型 | 正常现象，之后每条 2~4 秒 |
 | 回答以 `[MOCK]` 开头 | 当前离线 Mock 模式 | 属预期；配置 API Key 并用真实模式 |
 | UI 里回答没有"法律推理" | Mock 是抽取式拼接 | 同上，真实模型才有推理能力 |

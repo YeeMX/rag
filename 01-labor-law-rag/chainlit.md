@@ -1,14 +1,18 @@
-# Welcome to Chainlit! 🚀🤖
+# ⚖️ 劳动法智能咨询（RAG + 多路召回）
 
-Hi there, Developer! 👋 We're excited to have you on board. Chainlit is a powerful tool designed to help you prototype, debug and share applications built on top of LLMs.
+知识库：4 部劳动法系法律、**357 条**法条原文　|　检索：BGE 稠密 + BM25 稀疏 + RRF 融合 + cross-encoder 重排 + 零样本过滤
 
-## Useful Links 🔗
+## 怎么用
 
-- **Documentation:** Get started with our comprehensive [Chainlit Documentation](https://docs.chainlit.io) 📚
-- **Discord Community:** Join our friendly [Chainlit Discord](https://discord.gg/k73SQ3FyUh) to ask questions, share your projects, and connect with other developers! 💬
+在输入框直接输入一句劳动法问题，例如：
 
-We can't wait to see what you create with Chainlit! Happy coding! 💻😊
+- 公司违法辞退我，月薪12000、工作3年7个月，能赔多少？
+- 入职8个月没签劳动合同，被辞退能同时要双倍工资和赔偿金吗？
+- 公司一直不给我缴社保，我可以要求补缴吗？
+- 我怀孕5个月，公司说要裁员，可以解除我的劳动合同吗？
+- 平时加班、周末加班、国庆加班，加班费分别按几倍算？
 
-## Welcome screen
+每条回答都会附带**引用法条**和**检索轨迹**（dense / BM25 / RRF / rerank 分数、是否被过滤），方便核验。
 
-To modify the welcome screen, edit the `chainlit.md` file at the root of your project. If you do not want a welcome screen, just leave this file empty.
+> 当前为离线 Mock 模式（未配置 `OPENAI_API_KEY`），回答是法条原文的抽取式拼接，会标注 `[MOCK]`。
+> 本系统仅用于技术演示，不构成正式法律意见。

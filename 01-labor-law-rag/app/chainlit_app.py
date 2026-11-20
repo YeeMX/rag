@@ -17,12 +17,31 @@ import logging
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "src"))
+# 找出项目根目录下的 src 并加入 sys.path。
+# 注意：必须用 append 而不是 insert(0, ...)！
+# Chainlit 2.12 的 load_module() 会先 sys.path.insert(0, app_dir) 再 exec 本文件，
+# exec 完之后执行 sys.path.pop(0)。如果我们也 insert(0, src)，被 pop 掉的就是 src，
+# 于是运行期 `from lrs...` 会报 ModuleNotFoundError: No module named 'lrs'。
+_SRC_CANDIDATES = [
+    Path(__file__).resolve().parents[1] / "src",   # 01-labor-law-rag/src
+    Path.cwd() / "src",                            # 从项目根目录启动时的兜底
+]
+_SRC_DIR = next((p for p in _SRC_CANDIDATES if (p / "lrs").is_dir()), None)
+if _SRC_DIR is None:  # pragma: no cover - 目录结构被破坏时才触发
+    raise RuntimeError(
+        "找不到 lrs 包。请在 01-labor-law-rag 目录下启动："
+        "chainlit run app/chainlit_app.py"
+    )
+if str(_SRC_DIR) not in sys.path:
+    sys.path.append(str(_SRC_DIR))
 
 import chainlit as cl  # noqa: E402
 
 logger = logging.getLogger(__name__)
+
+# 全局 service 缓存：模型加载（BGE + reranker）约 10~20 秒，
+# 不能每个新会话都重新加载一次，否则打开页面要等很久。
+_SERVICE = None
 
 EXAMPLES = [
     "公司违法辞退我，月薪12000、工作3年7个月，能赔多少？",
@@ -34,13 +53,20 @@ EXAMPLES = [
 
 
 def _service():
-    svc = cl.user_session.get("rag_service")
-    if svc is None:
-        from lrs.service import RAGService
+    global _SERVICE
+    if _SERVICE is None:
+        try:
+            from lrs.service import RAGService
+        except ModuleNotFoundError:  # pragma: no cover - 极少数宿主环境会清掉 sys.path
+            if str(_SRC_DIR) not in sys.path:
+                sys.path.append(str(_SRC_DIR))
+            from lrs.service import RAGService
 
-        svc = RAGService.load_or_build()
-        cl.user_session.set("rag_service", svc)
-    return svc
+        logger.info("首次加载检索服务（BGE + reranker），约 10~20 秒 ...")
+        _SERVICE = RAGService.load_or_build()
+        logger.info("检索服务就绪")
+    cl.user_session.set("rag_service", _SERVICE)
+    return _SERVICE
 
 
 @cl.on_chat_start
