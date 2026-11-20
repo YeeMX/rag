@@ -1,4 +1,4 @@
-# AI 应用作品集 · 劳动法领域三个项目
+﻿# AI 应用作品集 · 劳动法领域三个项目
 
 > 一个仓库讲完一条完整的 AI 应用能力链：
 > **RAG 做知识 → Agent 做行动 → 视觉做多模态输入**，三个项目共享同一份真实法条语料与同一套评测方法论。
@@ -37,7 +37,7 @@
 │   └── tests/
 ├── 02-labor-law-agent/        # Agent demo
 ├── 03-vision-ocr-demo/        # YOLO + OCR demo
-├── shared/                    # 共享法条语料与工作约定
+├── shared/                    # 共享法条语料（供 Agent 项目读取）
 └── INTERVIEW_NOTES.md         # 面试讲解手册（三个项目通用）
 ```
 

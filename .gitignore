@@ -1,4 +1,4 @@
-# 虚拟环境（本机用，不提交）
+﻿# 虚拟环境（本机用，不提交）
 .venv-rag/
 .venv-vision/
 .venv-paddle/
@@ -15,6 +15,8 @@ __pycache__/
 
 # 模型权重与缓存（体积大，按各项目 README 自行下载/训练）
 *.pt
+# 例外：视觉 demo 复用已训练权重（--skip-train 需要）
+!03-vision-ocr-demo/models/best.pt
 *.pth
 *.onnx
 *.safetensors
