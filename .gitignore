@@ -51,3 +51,7 @@ ai-town/
 # pytest 临时目录
 pytest-of-*/
 setup_*.log
+
+# Chainlit 运行时目录（应生成在 01-labor-law-rag/ 下，这里兜底忽略）
+.chainlit/
+.files/

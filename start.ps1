@@ -34,45 +34,47 @@ function Assert-Env {
 function Invoke-RagUi {
     Write-Host "启动 RAG 网页版：http://127.0.0.1:8000 （Ctrl+C 停止）" -ForegroundColor Cyan
     Push-Location "$root\01-labor-law-rag"
+    $prevCwd = [Environment]::CurrentDirectory
+    [Environment]::CurrentDirectory = (Get-Location).Path
     try { & $ragPy -m chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000 }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-RagAsk {
     Write-Host "问题：$Question" -ForegroundColor Cyan
     Push-Location "$root\01-labor-law-rag"
     try { & $ragPy scripts\cli.py ask $Question }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-RagEval {
     Push-Location "$root\01-labor-law-rag"
     try { & $ragPy scripts\run_eval.py }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-AgentDemo {
     Push-Location "$root\02-labor-law-agent"
     try { & $ragPy -m labor_agent.cli demo --no-color }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-AgentTest {
     Push-Location "$root\02-labor-law-agent"
     try { & $ragPy -m pytest tests -q }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-VisionDemo {
     Push-Location "$root\03-vision-ocr-demo"
     try { & $visionPy run_demo.py --skip-train }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-VisionTest {
     Push-Location "$root\03-vision-ocr-demo"
     try { & $visionPy tests\run_all.py }
-    finally { Pop-Location }
+    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
 }
 
 function Invoke-TestAll {
