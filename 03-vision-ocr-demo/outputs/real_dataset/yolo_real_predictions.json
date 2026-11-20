@@ -1,0 +1,738 @@
+{
+  "config": {
+    "weights": "models/best.pt",
+    "trained_on": "合成法律文书（title/paragraph/table/stamp）",
+    "imgsz": 640,
+    "conf": 0.25,
+    "device": "cpu",
+    "dataset": "XFUND v1.0 zh.val（真实扫描中文表单）"
+  },
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.14.1+cpu",
+    "device": "cpu"
+  },
+  "aggregate": {
+    "num_pages": 5,
+    "total_gt_boxes": 362,
+    "total_detections": 61,
+    "det_gt_ratio": 0.169,
+    "recall_iou50": 0.0248,
+    "center_hit_rate": 0.7707,
+    "center_hits_per_gt": 0.9613,
+    "mean_gt_area_coverage": 0.7543,
+    "mean_conf_all_dets": 0.5894,
+    "mean_conf_iou_matched": 0.4887,
+    "class_distribution": {
+      "title": 8,
+      "paragraph": 43,
+      "table": 10,
+      "stamp": 0
+    },
+    "iou_threshold": 0.5,
+    "note": "类别无关评估：XFUND 标签为 header/question/answer/other，与合成数据 4 类不可直接映射，因此不报 mAP。"
+  },
+  "pages": [
+    {
+      "id": "zh_val_0",
+      "image": "zh_val_0.jpg",
+      "width": 2480,
+      "height": 3508,
+      "num_gt": 71,
+      "num_det": 15,
+      "det_gt_ratio": 0.211,
+      "recall_iou50": 0.0141,
+      "center_hit_rate": 0.5915,
+      "center_hits_per_gt": 0.6479,
+      "center_hits_total": 46,
+      "mean_gt_area_coverage": 0.5591,
+      "mean_conf_all_dets": 0.5579,
+      "mean_conf_iou_matched": 0.2871,
+      "detections": [
+        {
+          "bbox": [
+            245.8,
+            537.9,
+            839.3,
+            761.9
+          ],
+          "conf": 0.7923,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            309.4,
+            3034.9,
+            1487.5,
+            3177.3
+          ],
+          "conf": 0.7655,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            242.7,
+            2878.7,
+            1389.1,
+            2985.8
+          ],
+          "conf": 0.7322,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            479.5,
+            1402.6,
+            2177.7,
+            1530.6
+          ],
+          "conf": 0.6967,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            252.4,
+            1072.1,
+            804.8,
+            1218.4
+          ],
+          "conf": 0.6693,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            265.4,
+            238.2,
+            1457.2,
+            469.4
+          ],
+          "conf": 0.6469,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1814.3,
+            109.0,
+            2170.7,
+            250.6
+          ],
+          "conf": 0.613,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            1447.2,
+            2815.8,
+            2164.1,
+            2904.9
+          ],
+          "conf": 0.6094,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1055.7,
+            291.8,
+            1443.9,
+            464.2
+          ],
+          "conf": 0.4553,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            275.7,
+            2574.5,
+            1410.3,
+            2740.6
+          ],
+          "conf": 0.4542,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            0.0,
+            1776.7,
+            2169.2,
+            2189.5
+          ],
+          "conf": 0.4175,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            274.2,
+            1737.5,
+            1596.9,
+            1861.1
+          ],
+          "conf": 0.4165,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            284.9,
+            824.6,
+            1791.7,
+            989.2
+          ],
+          "conf": 0.4104,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            301.1,
+            2276.8,
+            1449.1,
+            2422.8
+          ],
+          "conf": 0.4023,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            274.9,
+            152.6,
+            581.3,
+            233.4
+          ],
+          "conf": 0.2871,
+          "class_id": 0
+        }
+      ]
+    },
+    {
+      "id": "zh_val_1",
+      "image": "zh_val_1.jpg",
+      "width": 2480,
+      "height": 3508,
+      "num_gt": 131,
+      "num_det": 14,
+      "det_gt_ratio": 0.107,
+      "recall_iou50": 0.0076,
+      "center_hit_rate": 0.9008,
+      "center_hits_per_gt": 1.3282,
+      "center_hits_total": 174,
+      "mean_gt_area_coverage": 0.8901,
+      "mean_conf_all_dets": 0.5435,
+      "mean_conf_iou_matched": 0.3477,
+      "detections": [
+        {
+          "bbox": [
+            521.9,
+            584.1,
+            1259.8,
+            740.6
+          ],
+          "conf": 0.9123,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            566.5,
+            830.0,
+            2079.6,
+            1007.2
+          ],
+          "conf": 0.9116,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            640.7,
+            2688.0,
+            2060.5,
+            3281.1
+          ],
+          "conf": 0.8848,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            0.0,
+            326.0,
+            2067.8,
+            558.7
+          ],
+          "conf": 0.6753,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            266.7,
+            1725.6,
+            2076.0,
+            1995.9
+          ],
+          "conf": 0.6285,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            455.1,
+            1155.6,
+            2093.1,
+            1247.3
+          ],
+          "conf": 0.556,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1213.9,
+            1287.5,
+            2063.1,
+            1562.1
+          ],
+          "conf": 0.5336,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            325.9,
+            1727.0,
+            2045.1,
+            2463.0
+          ],
+          "conf": 0.514,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            570.2,
+            3230.9,
+            2240.1,
+            3370.8
+          ],
+          "conf": 0.4112,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            291.0,
+            229.4,
+            2078.8,
+            529.7
+          ],
+          "conf": 0.3878,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            895.0,
+            192.2,
+            1489.6,
+            306.8
+          ],
+          "conf": 0.3477,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            528.6,
+            1293.0,
+            1443.4,
+            1522.6
+          ],
+          "conf": 0.2969,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            614.7,
+            2122.3,
+            2069.3,
+            2630.0
+          ],
+          "conf": 0.2775,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            669.1,
+            2692.6,
+            1678.7,
+            2904.1
+          ],
+          "conf": 0.2714,
+          "class_id": 1
+        }
+      ]
+    },
+    {
+      "id": "zh_val_2",
+      "image": "zh_val_2.jpg",
+      "width": 2480,
+      "height": 3508,
+      "num_gt": 48,
+      "num_det": 17,
+      "det_gt_ratio": 0.354,
+      "recall_iou50": 0.1042,
+      "center_hit_rate": 0.8125,
+      "center_hits_per_gt": 0.9583,
+      "center_hits_total": 46,
+      "mean_gt_area_coverage": 0.7714,
+      "mean_conf_all_dets": 0.597,
+      "mean_conf_iou_matched": 0.4857,
+      "detections": [
+        {
+          "bbox": [
+            336.0,
+            1988.0,
+            865.3,
+            2155.9
+          ],
+          "conf": 0.9451,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            350.3,
+            2337.8,
+            2113.7,
+            2479.9
+          ],
+          "conf": 0.9057,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            425.7,
+            2777.8,
+            2039.1,
+            2935.2
+          ],
+          "conf": 0.8843,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            412.4,
+            2525.2,
+            2012.5,
+            2687.1
+          ],
+          "conf": 0.8593,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            474.2,
+            479.9,
+            2020.6,
+            617.7
+          ],
+          "conf": 0.8146,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            324.0,
+            769.0,
+            888.5,
+            895.3
+          ],
+          "conf": 0.8082,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1168.7,
+            1287.5,
+            1833.9,
+            1427.9
+          ],
+          "conf": 0.7564,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            795.4,
+            1723.8,
+            1627.6,
+            1937.0
+          ],
+          "conf": 0.6546,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            747.2,
+            1860.2,
+            2075.6,
+            1976.1
+          ],
+          "conf": 0.5749,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1431.3,
+            2180.0,
+            1768.2,
+            2270.2
+          ],
+          "conf": 0.4236,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            324.0,
+            1420.9,
+            964.8,
+            1498.0
+          ],
+          "conf": 0.421,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            393.9,
+            357.6,
+            535.6,
+            425.4
+          ],
+          "conf": 0.4051,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            316.6,
+            1727.9,
+            682.0,
+            1795.4
+          ],
+          "conf": 0.364,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            355.8,
+            995.6,
+            1442.9,
+            1144.2
+          ],
+          "conf": 0.3524,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            328.4,
+            1209.3,
+            2001.5,
+            1364.4
+          ],
+          "conf": 0.3352,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            237.8,
+            1271.4,
+            1936.8,
+            1427.1
+          ],
+          "conf": 0.3303,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1158.8,
+            768.5,
+            1796.6,
+            1009.7
+          ],
+          "conf": 0.315,
+          "class_id": 1
+        }
+      ]
+    },
+    {
+      "id": "zh_val_3",
+      "image": "zh_val_3.jpg",
+      "width": 2480,
+      "height": 3508,
+      "num_gt": 67,
+      "num_det": 9,
+      "det_gt_ratio": 0.134,
+      "recall_iou50": 0.0149,
+      "center_hit_rate": 0.5672,
+      "center_hits_per_gt": 0.5821,
+      "center_hits_total": 39,
+      "mean_gt_area_coverage": 0.5797,
+      "mean_conf_all_dets": 0.5412,
+      "mean_conf_iou_matched": 0.5104,
+      "detections": [
+        {
+          "bbox": [
+            666.1,
+            2348.5,
+            1088.7,
+            2466.6
+          ],
+          "conf": 0.812,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            433.9,
+            3036.9,
+            2114.0,
+            3168.0
+          ],
+          "conf": 0.7685,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            882.0,
+            3220.7,
+            1579.2,
+            3334.0
+          ],
+          "conf": 0.705,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            891.9,
+            262.7,
+            1700.1,
+            383.4
+          ],
+          "conf": 0.5808,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            882.7,
+            262.0,
+            1694.7,
+            380.7
+          ],
+          "conf": 0.5104,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            1237.3,
+            2003.3,
+            1843.2,
+            2152.5
+          ],
+          "conf": 0.479,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            0.0,
+            1199.4,
+            2246.2,
+            1695.1
+          ],
+          "conf": 0.443,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            1611.4,
+            2338.8,
+            2020.2,
+            2485.9
+          ],
+          "conf": 0.3024,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            403.7,
+            431.9,
+            1745.6,
+            777.2
+          ],
+          "conf": 0.2696,
+          "class_id": 1
+        }
+      ]
+    },
+    {
+      "id": "zh_val_4",
+      "image": "zh_val_4.jpg",
+      "width": 2480,
+      "height": 3508,
+      "num_gt": 45,
+      "num_det": 6,
+      "det_gt_ratio": 0.133,
+      "recall_iou50": 0.0222,
+      "center_hit_rate": 0.9333,
+      "center_hits_per_gt": 0.9556,
+      "center_hits_total": 43,
+      "mean_gt_area_coverage": 0.909,
+      "mean_conf_all_dets": 0.7075,
+      "mean_conf_iou_matched": 0.8126,
+      "detections": [
+        {
+          "bbox": [
+            530.6,
+            1158.0,
+            1524.0,
+            1310.5
+          ],
+          "conf": 0.9619,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            258.3,
+            523.0,
+            2194.6,
+            1086.1
+          ],
+          "conf": 0.8794,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            1131.1,
+            362.4,
+            1599.0,
+            447.2
+          ],
+          "conf": 0.8126,
+          "class_id": 0
+        },
+        {
+          "bbox": [
+            1140.2,
+            361.2,
+            1610.9,
+            457.7
+          ],
+          "conf": 0.5995,
+          "class_id": 1
+        },
+        {
+          "bbox": [
+            259.3,
+            2632.4,
+            2193.0,
+            2817.2
+          ],
+          "conf": 0.5581,
+          "class_id": 2
+        },
+        {
+          "bbox": [
+            279.2,
+            1821.0,
+            966.9,
+            1986.1
+          ],
+          "conf": 0.4334,
+          "class_id": 1
+        }
+      ]
+    }
+  ]
+}

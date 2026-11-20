@@ -21,7 +21,7 @@
 
 - 面试场景需要**可解释、可拆指标**：检测有 mAP、OCR 有 CER、抽取值准确率，三层可以分别定位问题；
 - 检测 + 识别级联**能用少量标注数据训练**（本项目只用 24 张合成训练图）；
-- 代价是**误差传导**（检测错 → OCR 错 → 抽取错），本项目用真实数字把这个 trade-off 讲清楚，见 §3、§6。
+- 代价是**误差传导**（检测错 → OCR 错 → 抽取错），本项目用真实数字把这个 trade-off 讲清楚，见 §5.3 与 §7.5。
 
 ---
 
@@ -56,7 +56,8 @@ flowchart LR
 ├── run_demo.py                  # 一条命令跑完整条流水线（子进程调度两个 Python 环境）
 ├── scripts/
 │   ├── make_dataset.py          # 合成 A4 法律文书图片 + 精确 bbox/全文/字段 GT
-│   └── make_report.py           # 汇总 metrics JSON → outputs/report.md
+│   ├── make_report.py           # 汇总 metrics JSON → outputs/report.md
+│   └── eval_real_dataset.py     # 真实扫描件（XFUND）域外验证：真实 CER + YOLO 域差距
 ├── src/
 │   ├── yolo_detect.py           # YOLO 训练 / 推理 / 官方 model.val() / 手写 IoU 匹配评估 / 测速
 │   ├── ocr_paddle.py            # PaddleOCR 整图 vs 区域裁剪，自实现 Levenshtein CER
@@ -64,6 +65,7 @@ flowchart LR
 ├── tests/                       # unittest，`python tests/run_all.py` 直接跑（无 pytest 依赖）
 ├── data/                        # 合成数据（images / labels / annotations.json / data.yaml）
 ├── outputs/                     # 真实产物：report.md、metrics_*.json、检测图、裁剪图、抽取 JSON
+│   └── real_dataset/            # 真实扫描件验证：metrics_real.json、report_real.md、标注样例图
 ├── requirements-yolo.txt
 ├── requirements-ocr.txt
 └── .gitignore
@@ -118,13 +120,26 @@ python src\extract.py --split val
 python scripts\make_report.py
 ```
 
-### 4.4 测试
+### 4.4 真实扫描件验证（可选，需下载约 66MB）
+
+```powershell
+# 首次：自动下载 XFUND zh.val + 标注（GitHub release，不走 HuggingFace）
+python scripts\eval_real_dataset.py --download
+
+# 复现真实数据指标（5 页；OCR 约 35~100s/页，总耗时约 6 分钟）
+python scripts\eval_real_dataset.py --stage all --max-pages 5
+```
+
+产出 `outputs/real_dataset/metrics_real.json`、`outputs/real_dataset/report_real.md`、标注样例图；
+结论见 [§7 真实扫描件验证](#7-真实扫描件验证真实数据)。
+
+### 4.5 测试
 
 ```powershell
 python tests\run_all.py
 ```
 
-当前结果：**65 个用例全部通过**（IoU/贪心匹配/AP、Levenshtein/CER、字段抽取、数据集标注自洽性、产物与 README 一致性；不依赖训练好的模型和 paddle）。
+当前结果：**74 个用例全部通过**（IoU/贪心匹配/AP、Levenshtein/CER、字段抽取、数据集标注自洽性、产物与 README 一致性；不依赖训练好的模型和 paddle）。
 
 ---
 
@@ -169,7 +184,7 @@ python tests\run_all.py
 
 ### 5.3 OCR：整图识别 vs 区域裁剪后识别（核心对比）
 
-PaddleOCR：`PP-OCRv5_mobile_det` + `PP-OCRv5_mobile_rec`，lang=ch；**MKLDNN 关闭**（见 §7 的 Paddle 兼容性说明），CPU。评测 val 集 8 张图，第一张图 + 第一个裁剪区域各预热一次，不计入耗时。
+PaddleOCR：`PP-OCRv5_mobile_det` + `PP-OCRv5_mobile_rec`，lang=ch；**MKLDNN 关闭**（见 §8 的 Paddle 兼容性说明），CPU。评测 val 集 8 张图，第一张图 + 第一个裁剪区域各预热一次，不计入耗时。
 
 | 指标 | 整图直接 OCR | 区域裁剪流水线（YOLO→裁→OCR） |
 |---|---|---|
@@ -263,7 +278,89 @@ PaddleOCR：`PP-OCRv5_mobile_det` + `PP-OCRv5_mobile_rec`，lang=ch；**MKLDNN �
 
 ---
 
-## 7. 面试怎么讲（8 条要点）
+## 7. 真实扫描件验证（真实数据）
+
+> §5 的所有指标都在**合成数据**上。这一节用**真实扫描件**做域外验证，回答两个问题：
+> ① 合成数据上的 OCR 结论能不能迁移到真实域？② 合成数据训练的检测器在真实表单上的域差距有多大？
+> **结论是负面的：不能直接迁移**（见 7.5）。
+
+### 7.1 数据集：XFUND v1.0 中文验证集（真实扫描表单）
+
+| 项目 | 内容 |
+|---|---|
+| 数据集 | XFUND（ACL 2022 Findings 多语言表单理解基准）中文 `zh.val` 子集 |
+| 来源 | https://github.com/doc-analysis/XFUND/releases/tag/v1.0 |
+| 真实性 | **真实扫描/拍照**的中文表单（如 Maribyrnong 市政府纾困申请表），非合成 |
+| 规模 | 该 split 共 50 页；本评测取前 **5 页**（zh_val_0 ~ zh_val_4） |
+| 图像 | 2480×3508 JPEG（300dpi A4） |
+| GT | 实体级标注：`header / question / answer / other` + bbox + 文本 |
+| 下载量 | `zh.val.zip` 69,217,820 B（约 66 MiB）+ `zh.val.json` 1,711,142 B |
+| 许可 | 官方仓库未附明确 LICENSE 文件（HuggingFace 镜像标注 CC BY-NC-SA 4.0）；本项目仅本地研究/作品集展示，不再分发数据（`data/real/` 已 gitignore） |
+
+复现命令见 §4.4；脚本支持 `--max-pages`，数据缺失时 `--download` 自动从 GitHub release 下载（不依赖 HuggingFace）。
+
+> ⚠️ **样本量只有 5 页**：真实页整图 OCR 约 35~100 s/页（CPU + 关闭 MKLDNN），所以下面是**方向性结论**，不能当统计显著性。
+
+### 7.2 OCR：真实页 CER vs 合成数据
+
+| 指标 | 真实扫描页（5 页） | 合成数据（8 页，对照） |
+|---|---|---|
+| **CER（加权，按字符）** | **0.1280** | 0.0450 |
+| CER 逐页均值 | 0.1425 | 0.0453 |
+| CER 范围（min~max） | 0.0785 ~ 0.2111 | - |
+| 平均单页 OCR 耗时 | 56344 ms | 34216 ms |
+| 评测页数 / GT 字符数 | 5 / 3626 | 8 / 3808 |
+
+逐页 CER：`zh_val_0` 0.0785、`zh_val_1` 0.1171、`zh_val_2` 0.1279、`zh_val_3` 0.2111、`zh_val_4` 0.1780；
+逐页耗时 34.6~98.1 s（同一条「整图直接 OCR」pipeline，5 页总 OCR 耗时 281.7 s）。明细见 `outputs/real_dataset/report_real.md`。
+
+**域差距约 2.84 倍**（0.1280 / 0.0450）。原因：
+
+- 真实扫描件有噪声、表格线、中英混排、密集小字；
+- XFUND 的 GT 是**实体级标注**而非逐字全文，页码等装饰文字未标注，OCR 多读出的字会作为插入错误计入 CER，真实 CER 会略偏高；
+- 合成图片是「干净渲染」，OCR 难度显著更低。
+
+> 真实数据上**没有**「区域裁剪 vs 整图」的对照：合成训练的检测器在真实表单上框不住文字（7.3），裁剪会错位。这本身就是一个结论，而不是「未测量」。
+
+### 7.3 YOLO 域差距（类别无关，不报 mAP）
+
+XFUND 标签语义是 header/question/answer/other，与合成数据的 title/paragraph/table/stamp **不可直接映射**，所以不报 mAP，只测「能不能把文字区域框出来」（类别无关）：
+
+| 指标 | 数值 | 说明 |
+|---|---|---|
+| GT 文本框数 | 362 | XFUND 实体级行/词框 |
+| 检测框数 | 61 | conf≥0.25 |
+| 检测框 / GT 框 数量比 | **0.169** | 约 1/6 的文本实体被「当成一个框」检出 |
+| **IoU≥0.5 覆盖率（类别无关 recall）** | **0.0248** | 仅 2.48% 的 GT 框被检测框严格覆盖 |
+| 中心点命中率（≥1 个检测框覆盖 GT 中心） | 0.7707 | 检测器大致「知道哪里有字」 |
+| 中心点平均命中个数（可 >1） | 0.9613 | 少量重复框 |
+| GT 面积平均被覆盖比例 | 0.7543 | 检测框通常比 GT 行框大（版面块级） |
+| 检测框平均置信度 | 0.5894 | 明显低于合成 val 上的多数 0.8+ |
+| 命中检测框平均置信度（IoU≥0.5） | 0.4887 | 真正框住的置信度更低 |
+| 检测类别分布 | title 8 / paragraph 43 / table 10 / stamp 0 | 真实表单无印章类，模型未检出 |
+
+**解读**：IoU≥0.5 只有 2.48%，但中心命中率 77%、面积覆盖 75% —— 模型在真实域仍能大致定位文字块，但学到的框是**合成数据的版面块级**（paragraph/table），不是 XFUND 的实体行/词级，粒度不匹配导致严格 IoU 命中率极低；检测置信度从合成域 0.8+ 掉到 0.59，是典型 OOD（out-of-distribution）表现。
+
+真实页样例（绿框 = XFUND GT 行/词框，红框 = 合成模型预测的版面块）：
+
+![真实页 YOLO 域差距示例 1](outputs/real_dataset/samples/zh_val_0_gt_vs_pred.png)
+
+![真实页 YOLO 域差距示例 2](outputs/real_dataset/samples/zh_val_1_gt_vs_pred.png)
+
+![真实页 YOLO 域差距示例 3](outputs/real_dataset/samples/zh_val_2_gt_vs_pred.png)
+
+### 7.4 结构化抽取：不适用
+
+XFUND 是「header/question/answer」语义的真实表单，不是劳动合同模板。现有规则抽取器（合同期限/工资/试用期/甲方乙方/签订日期）**无法直接套用**；硬套只会得到没有意义的指标，因此如实标注「不适用」。要迁移需要重新定义字段 schema + 标注少量真实样本。
+
+### 7.5 结论：合成数据上的结论**不能**直接迁移到真实域
+
+1. **OCR 绝对值不可外推**：真实扫描件整图 CER 0.1280 vs 合成 0.0450，约 **2.84 倍**；
+2. **核心结论失去前提**：合成数据上「检测 → 区域裁剪 → OCR 提升质量」的前提是检测框准；真实域 IoU≥0.5 覆盖率仅 **2.48%**、平均置信度 0.59，裁剪会错位。瓶颈首先在**检测器的域泛化**，不是 OCR 模型；
+3. **但 OCR 本身仍可用**：真实中文扫描件整页 3626 字中错约 464 字（CER 0.128），错误集中在表格/稠密小字/中英混排；
+4. **正确的下一步**：在真实数据上重新标注/微调检测器（或换版面分析模型），再复测「区域裁剪 vs 整图」；在此之前不能把合成数据上「正常样本 CER 相对降 54%」当成真实收益。
+
+## 8. 面试怎么讲（8 条要点）
 
 1. **先把问题拆成「检测 → 识别 → 结构化」三层**，每层有独立指标（mAP / CER / 字段准确率），出问题能定位到层，而不是一个黑盒说「效果还行」。
 2. **为什么 YOLO 而不是通用文档解析模型**：4 类版面元素、数据量小（24 张训练图）、CPU 可训练（50 epochs 约 5 分钟），迁移学习足够；通用文档模型在离线 CPU 场景成本高、不可控。
@@ -274,7 +371,7 @@ PaddleOCR：`PP-OCRv5_mobile_det` + `PP-OCRv5_mobile_rec`，lang=ch；**MKLDNN �
 7. **工程细节**：两个 venv 隔离（torch 与 paddle 依赖冲突），`run_demo.py` 用 subprocess 分别调度；Paddle 3.3.1 + PaddleOCR 3.7 在 CPU 上触发 oneDNN/PIR 兼容性 bug，通过 `paddle.set_flags({"FLAGS_use_mkldnn": False})` + `enable_mkldnn=False` 绕过，代价是推理变慢（这也是 OCR 34s/张的原因）。
 8. **耗时拆解与优化优先级**：YOLO ~50ms（0.6%），OCR ~34s（99%+）。优化顺序不是「换更快的检测模型」，而是 OCR：ONNX/OpenVINO 加速、batch 识别、按区域类别只识别必要区域、异步流水线、限制单页文字行数。这个拆解能避免盲目优化。
 
-## 8. 高频追问（4 个 + 1 个加分）
+## 9. 高频追问（4 个 + 1 个加分）
 
 **Q1：IoU 怎么算？匹配时 TP/FP/FN 怎么定？**
 
@@ -296,11 +393,13 @@ OCR 是字符级任务，大多数时候只错一两个字。用「整句全对�
 
 先拆瓶颈：本 demo 检测占 <1%，OCR 占 99%。落地优先级：① ONNX Runtime / OpenVINO / TensorRT 加速 + INT8 量化；② OCR 批量识别、按区域类别只识别必要区域（印章/表格可以单独策略）；③ 异步流水线 + 队列，把「一页 34s」变成吞吐指标；④ 灰度时对高置信字段直接落库、低置信走人工复核；⑤ 有 GPU 时直接 GPU 推理，或换更小的 OCR 模型。
 
-## 9. 局限与下一步
+## 10. 局限与下一步
 
 **局限（必须说清楚）：**
 
-- **合成数据 ≠ 真实扫描件**：真实场景有拍照畸变/阴影/装订线/背景纹理/手写批注/多种印章，指标会明显下降。**本项目指标只用于打通流程、验证指标计算、做架构对比，不代表真实场景性能。**
+- **合成数据 ≠ 真实扫描件**：真实场景有拍照畸变/阴影/装订线/背景纹理/手写批注/多种印章，指标会明显下降。**本项目合成数据指标只用于打通流程、验证指标计算、做架构对比，不代表真实场景性能。**
+- **真实域验证（§7）已量化这种差距**：真实扫描件 CER 0.1280（合成 0.0450，约 2.84 倍）；合成训练的检测器在真实表单上 IoU≥0.5 覆盖率仅 2.48%，说明「区域裁剪提升 OCR」的结论在真实域不成立（瓶颈在检测域泛化）。
+- 真实评测样本量只有 5 页，属于方向性结论；且 XFUND 的 GT 是实体级标注而非全文转录，与整图 OCR 的 CER 口径存在轻微偏差。
 - CPU 训练轮数有限（50 epochs、24 张训练图），mAP 绝对值不能当作生产水平。
 - 难例上检测框偏移/重复检测会把误差传导给 OCR（已量化：难例 CER 0.0673 → 0.1598）。
 - 检测框贴边裁剪会切掉少量边缘字符（`outputs/images/region_crops_example.png` 中可见个别行首字被切），这是 8px padding 的取舍；加大 padding 又会引入邻行文字。
@@ -316,12 +415,15 @@ OCR 是字符级任务，大多数时候只错一两个字。用「整句全对�
 5. 抽取升级：规则 baseline + LLM 兜底/校验，输出字段置信度，低置信走人工复核；
 6. 和版面分析模型（如 PP-Structure）做对比实验。
 
-## 10. 产物与复现信息
+## 11. 产物与复现信息
 
 - 一键产物：`outputs/report.md`（指标表 + 图片链接 + 逐图明细）
 - 指标文件：`outputs/metrics_yolo.json`、`outputs/metrics_ocr.json`、`outputs/metrics_extract.json`
 - 原始结果：`outputs/yolo_predictions.json`、`outputs/ocr_texts.json`、`outputs/extracted.json`
 - 运行元数据：`outputs/run_meta.json`（命令、各步骤耗时、环境）
+- 真实扫描件验证产物：`outputs/real_dataset/metrics_real.json`、`outputs/real_dataset/report_real.md`、
+  `outputs/real_dataset/samples/*.png`、`outputs/real_dataset/yolo_real_predictions.json`、`outputs/real_dataset/ocr_real.json`
+  （命令：`python scripts/eval_real_dataset.py --stage all --max-pages 5`，5 页真实扫描件约 6 分钟）
 - 本次 `run_demo.py --skip-train` 实测：总耗时 **656.1 s**（yolo_detect 23.9 s、ocr_paddle 631.8 s、extract 0.1 s、报告 0.2 s），Windows 10 + CPU。
 - 训练（单独一步）：`src/yolo_detect.py --stage train --epochs 50`，50 epochs / CPU / 313.1 s。
 

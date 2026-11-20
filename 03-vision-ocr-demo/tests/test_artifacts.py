@@ -99,6 +99,30 @@ class TestArtifacts(unittest.TestCase):
         for name, token in tokens.items():
             self.assertIn(token, self.readme, f"README 缺少 {name}={token}，或数字与 metrics JSON 不一致")
 
+    def test_README_real_dataset_numbers_match_metrics(self) -> None:
+        """真实扫描件章节的数字必须与 outputs/real_dataset/metrics_real.json 一致。"""
+        real_path = OUT_DIR / "real_dataset" / "metrics_real.json"
+        if not real_path.is_file():
+            self.skipTest("没有真实数据评测产物（先运行 scripts/eval_real_dataset.py）")
+        real = read_json(real_path)
+        ocr_agg = real["ocr"]["aggregate"]
+        yolo_agg = real["yolo_domain_gap"]["aggregate"]
+        tokens = {
+            "real_cer_weighted": f"{ocr_agg['cer_weighted']:.4f}",
+            "real_cer_mean": f"{ocr_agg['cer_mean_per_page']:.4f}",
+            "real_recall_iou50": f"{yolo_agg['recall_iou50']:.4f}",
+            "real_center_hit_rate": f"{yolo_agg['center_hit_rate']:.4f}",
+            "real_det_gt_ratio": f"{yolo_agg['det_gt_ratio']:.3f}",
+        }
+        for name, token in tokens.items():
+            self.assertIn(token, self.readme, f"README 缺少真实数据指标 {name}={token}")
+        # 中心命中率必须 <= 1（历史 bug：重复计数导致 >1）
+        self.assertLessEqual(yolo_agg["center_hit_rate"], 1.0)
+        self.assertGreaterEqual(yolo_agg["center_hits_per_gt"], 0.0)
+        # 报告里不允许出现本机绝对路径
+        report_real = (OUT_DIR / "real_dataset" / "report_real.md").read_text(encoding="utf-8")
+        self.assertNotIn("D:\\", report_real, "report_real.md 不应包含本机绝对路径")
+
     def test_data_yaml_not_empty(self) -> None:
         path = DATA_DIR / "data.yaml"
         self.assertTrue(path.is_file())

@@ -17,6 +17,9 @@ data/labels/
 data/annotations.json
 data/data.yaml
 
+# --- 真实数据集（XFUND，仅本地研究用，不再分发；由 scripts/eval_real_dataset.py --download 获取） ---
+data/real/
+
 # --- 临时文件 / 探测脚本产物 / 日志 ---
 _tmp*/
 tmp/

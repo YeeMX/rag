@@ -11,9 +11,13 @@
 | `benchmark_50题.jsonl` | `01-labor-law-rag/data/benchmark.jsonl` | 人工编写的 50 题评测基准（含 gold 法条与 hard negative） |
 | `benchmark_stats.json` | `01-labor-law-rag/data/benchmark_stats.json` | 基准分布统计 |
 | `视觉demo报告.md` | `03-vision-ocr-demo/outputs/report.md` | YOLO / OCR / 抽取全链路报告（由 `run_demo.py` 生成） |
+| `真实数据验证报告.md` | `03-vision-ocr-demo/outputs/real_dataset/report_real.md` | **真实扫描件**（XFUND 中文）OCR CER 与 YOLO 域差距验证 |
+| `metrics_real.json` | `03-vision-ocr-demo/outputs/real_dataset/metrics_real.json` | 真实数据指标原始 JSON |
 | `metrics_yolo.json` | `03-vision-ocr-demo/outputs/metrics_yolo.json` | YOLO mAP / P / R / 速度原始指标 |
 | `metrics_ocr.json` | `03-vision-ocr-demo/outputs/metrics_ocr.json` | 整图 vs 区域 OCR 的 CER 原始指标 |
-| `images/yolo检测结果.png` | `03-vision-ocr-demo/outputs/images/det_doc_0024.png` | 版面检测可视化 |
+| `images/chainlit界面.png` | 本项目 Chainlit UI 真实截图 | 打开 http://127.0.0.1:8000 看到的界面 |
+| `images/真实扫描件检测对比.png` | `03-vision-ocr-demo/outputs/real_dataset/samples/` | 真实扫描件上的 GT vs 预测对比 |
+| `images/yolo检测结果.png` | `03-vision-ocr-demo/outputs/images/det_doc_0024.png` | 版面检测可视化（合成数据） |
 | `images/gt_vs_pred对比.png` | `03-vision-ocr-demo/outputs/images/gt_vs_pred_doc_0024.png` | GT（绿）vs 预测（红）对比 |
 | `images/区域裁剪示例.png` | `03-vision-ocr-demo/outputs/images/region_crops_example.png` | 检测框 → 裁剪 → 逐区域 OCR 示例 |
 

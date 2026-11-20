@@ -410,6 +410,17 @@ def build_report(data_dir: Path, out_dir: Path) -> str:
     lines.append("- CPU 训练轮数有限（YOLO11n + 24 张训练图），mAP 绝对值不能代表生产水平，重点看链路是否打通、指标是否可复算。")
     lines.append("- 结构化抽取是规则 baseline，字段格式变化或 OCR 严重错字时会漏抽；生产上还需要 LLM 兜底 + 校验。")
     lines.append("- 本机 Paddle 3.3.1 + PaddleOCR 3.7 在 CPU 上存在 oneDNN/PIR 兼容性问题，已关闭 MKLDNN，因此 OCR 速度比正常 CPU 推理慢。")
+    real_metrics = read_json(out_dir / "real_dataset" / "metrics_real.json")
+    if real_metrics:
+        real_ocr = real_metrics["ocr"]["aggregate"]
+        real_yolo = real_metrics["yolo_domain_gap"]["aggregate"]
+        lines.append(
+            f"- **真实扫描件验证（见 README §7 / `outputs/real_dataset/report_real.md`）**："
+            f"真实页整图 OCR CER={real_ocr['cer_weighted']:.4f}（合成数据为 "
+            f"{fmt((real_metrics.get('comparison_with_synthetic') or {}).get('ocr_synthetic_full_image_cer'))}），"
+            f"YOLO 在真实表单上 IoU≥0.5 覆盖率仅 {real_yolo['recall_iou50']:.4f}、"
+            f"平均置信度 {real_yolo['mean_conf_all_dets']:.4f} —— 合成数据上的结论不能直接迁移到真实域。"
+        )
     lines.append("")
     return "\n".join(lines)
 

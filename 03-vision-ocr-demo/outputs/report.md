@@ -1,6 +1,6 @@
 # 法律文书扫描件智能处理 Demo — 运行报告（自动生成）
 
-> 生成时间：2026-11-21 02:51:07　|　数据规模：32 张合成图　|　运行环境：Windows + CPU（无 GPU）
+> 生成时间：2026-11-21 03:20:53　|　数据规模：32 张合成图　|　运行环境：Windows + CPU（无 GPU）
 >
 > 本报告所有指标均由 `run_demo.py` 实际运行产生，数字对应 `outputs/metrics_*.json`。
 > **合成数据只用于打通流程与讲清指标，不代表真实扫描件场景性能。**
@@ -187,3 +187,4 @@ python run_demo.py --skip-train
 - CPU 训练轮数有限（YOLO11n + 24 张训练图），mAP 绝对值不能代表生产水平，重点看链路是否打通、指标是否可复算。
 - 结构化抽取是规则 baseline，字段格式变化或 OCR 严重错字时会漏抽；生产上还需要 LLM 兜底 + 校验。
 - 本机 Paddle 3.3.1 + PaddleOCR 3.7 在 CPU 上存在 oneDNN/PIR 兼容性问题，已关闭 MKLDNN，因此 OCR 速度比正常 CPU 推理慢。
+- **真实扫描件验证（见 README §7 / `outputs/real_dataset/report_real.md`）**：真实页整图 OCR CER=0.1280（合成数据为 0.0450），YOLO 在真实表单上 IoU≥0.5 覆盖率仅 0.0248、平均置信度 0.5894 —— 合成数据上的结论不能直接迁移到真实域。
