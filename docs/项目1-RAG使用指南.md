@@ -1,4 +1,7 @@
-﻿# 项目① 劳动法 RAG 系统 · 怎么看 / 怎么运行
+﻿> **最快运行**：仓库根目录双击 `start.cmd` → 选 `1) RAG 网页版`；或 `powershell -File start.ps1 -Task rag-ui`。
+> 本机环境已就绪（`.venv-rag`）；换机器先运行 `scripts\setup_envs.ps1` 安装依赖。
+
+# 项目① 劳动法 RAG 系统 · 怎么看 / 怎么运行
 
 > 目录：[`01-labor-law-rag/`](../01-labor-law-rag/README.md)
 > 一句话：4 部法律 **357 条真实法条**的检索增强问答，链路是
@@ -27,7 +30,7 @@
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会卡住
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
 
 浏览器打开 **http://127.0.0.1:8000**，直接输入问题（第一次打开需 20~30 秒加载模型）：
@@ -43,7 +46,7 @@ $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
-$py = "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe"
+$py = "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe"
 
 # 单题：打印回答 + 引用 + 检索轨迹
 & $py scripts\cli.py ask "公司违法辞退我，月薪12000、工作3年7个月，能赔多少？"
@@ -63,7 +66,7 @@ $py = "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe"
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" scripts\run_eval.py
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" scripts\run_eval.py
 ```
 
 产出：`data/eval/retrieval_results.json`、`answer_results.json`、`report.md`。

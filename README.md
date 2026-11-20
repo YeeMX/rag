@@ -47,25 +47,43 @@
 - 所有项目以 CPU 为基准，不需要 GPU；
 - 各项目依赖见各自的 `requirements.txt` / `pyproject.toml`。
 
-## 快速开始
+## 快速开始（零配置）
+
+本机目录下已就绪三个 Python 环境（`.venv-rag` / `.venv-vision` / `.venv-paddle`，是指向已验证环境的目录联接，**未纳入 git**）和一键启动脚本：
+
+```powershell
+# 方式 A：双击 start.cmd（或命令行运行）—— 弹出菜单选择要跑哪个 demo
+.\start.cmd
+
+# 方式 B：命令行直接指定任务（不用菜单）
+powershell -NoProfile -ExecutionPolicy Bypass -File start.ps1 -Task rag-ui
+powershell -NoProfile -ExecutionPolicy Bypass -File start.ps1 -Task agent-demo
+powershell -NoProfile -ExecutionPolicy Bypass -File start.ps1 -Task vision-demo
+```
+
+菜单包含：RAG 网页版（Chainlit）、RAG 命令行提问/评测、Agent demo/测试、视觉 demo/测试、全部测试。
+
+> 如果环境缺失或换机器：先运行一次 `scripts\setup_envs.ps1`（自动创建三个 venv 并安装锁定版本依赖，
+> 约 2.5 GB，首次约 10~20 分钟）。
+
+### 手动方式（等价命令）
 
 ```bash
 # 项目 ①：RAG
 cd 01-labor-law-rag
-pip install -r requirements.txt
 python scripts/cli.py ask "公司违法辞退我，月薪12000、工作3年7个月，能赔多少？"
-python scripts/evaluate.py --ablations --answers     # 复现评测
+python scripts/run_eval.py                               # 复现 50 题评测
 
 # 项目 ②：Agent
 cd ../02-labor-law-agent
-python -m labor_agent.cli demo
+python -m labor_agent.cli demo --no-color
 
-# 项目 ③：视觉（需要 ultralytics / paddleocr 环境）
+# 项目 ③：视觉
 cd ../03-vision-ocr-demo
-python run_demo.py --skip-train
+python run_demo.py --skip-train                          # 复用已训练权重（约 11 分钟）
 ```
 
-**文档入口**：[`docs/`](docs/交付说明.md) —— 使用指南（Chainlit 演示问题、项目②/③ 运行步骤）、评测结果汇总、生成结果快照。
+**文档入口**：[`docs/`](docs/交付说明.md) —— 使用指南（Chainlit 演示问题、项目①/②/③ 运行步骤）、评测结果汇总、生成结果快照。
 
 ## 关于简历/毕设的说明
 

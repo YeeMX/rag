@@ -1,4 +1,7 @@
-﻿# 项目② 工具调用 Agent · 怎么看 / 怎么运行
+﻿> **最快运行**：仓库根目录双击 `start.cmd` → 选 `4) Agent demo`；或 `powershell -File start.ps1 -Task agent-demo`。
+> 本机环境已就绪（`.venv-rag`）；换机器先运行 `scripts\setup_envs.ps1` 安装依赖。
+
+# 项目② 工具调用 Agent · 怎么看 / 怎么运行
 
 > 目录：[`02-labor-law-agent/`](../02-labor-law-agent/README.md)
 > 一句话：能调用 **3 个工具**（法条检索 / 赔偿精算 / 引用核验）的劳动法 Agent，
@@ -28,7 +31,7 @@
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\02-labor-law-agent"
 
 # 5 个内置问题，打印完整 trace（离线 Mock，不需要 API key，约 5 秒）
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" -m labor_agent.cli demo --no-color
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" -m labor_agent.cli demo --no-color
 ```
 
 ### 2.2 换到别的机器（从 GitHub clone 后）
@@ -42,7 +45,7 @@ python -m labor_agent.cli demo --no-color
 ### 2.3 其他常用命令
 
 ```powershell
-$py = "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe"
+$py = "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe"
 
 # 问单个问题
 & $py -m labor_agent.cli ask "公司违法辞退我，月薪12000，工作3年7个月，能赔多少？"

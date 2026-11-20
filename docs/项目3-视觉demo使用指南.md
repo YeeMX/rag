@@ -1,4 +1,7 @@
-﻿# 项目③ 视觉文档 demo · 怎么看 / 怎么运行
+﻿> **最快运行**：仓库根目录双击 `start.cmd` → 选 `6) 视觉 demo`；或 `powershell -File start.ps1 -Task vision-demo`。
+> 本机三个环境已就绪（`.venv-vision` / `.venv-paddle`）；换机器先运行 `scripts\setup_envs.ps1`。
+
+# 项目③ 视觉文档 demo · 怎么看 / 怎么运行
 
 > 目录：[`03-vision-ocr-demo/`](../03-vision-ocr-demo/README.md)
 > 一句话：**法律文书扫描件 → YOLO 版面检测（标题/正文/表格/印章）→ 区域裁剪 → PaddleOCR 识别 → 规则抽取字段**，
@@ -31,8 +34,8 @@ GT（绿）vs 预测（红）：
 ### 2.1 环境（这个项目需要两个隔离环境）
 
 ```text
-D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe   # ultralytics + torch（YOLO/训练/测速）
-D:\Vibe Coding Projects\.venv-paddle\Scripts\python.exe   # paddlepaddle + paddleocr（OCR）
+D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-vision\Scripts\python.exe   # ultralytics + torch（YOLO/训练/测速）
+D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-paddle\Scripts\python.exe   # paddlepaddle + paddleocr（OCR）
 ```
 
 > 为什么分开：ultralytics/torch 与 paddle 的依赖容易冲突。`run_demo.py` 会自动找到兄弟目录里的
@@ -55,10 +58,10 @@ python -m venv ..\.venv-paddle
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\03-vision-ocr-demo"
 
 # 复用已训练好的 models/best.pt，只复现指标 + 报告（约 11 分钟，OCR 占大头）
-& "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe" run_demo.py --skip-train
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-vision\Scripts\python.exe" run_demo.py --skip-train
 
 # 从零训练 + 全流程（约 15 分钟，CPU）
-& "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe" run_demo.py
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-vision\Scripts\python.exe" run_demo.py
 ```
 
 运行完看 `outputs/report.md`。
@@ -66,8 +69,8 @@ cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\03-vision-ocr-demo"
 ### 2.3 只想快速跑一部分（分步命令）
 
 ```powershell
-$vision = "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe"
-$paddle = "D:\Vibe Coding Projects\.venv-paddle\Scripts\python.exe"
+$vision = "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-vision\Scripts\python.exe"
+$paddle = "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-paddle\Scripts\python.exe"
 
 # ① YOLO 评估（约 1 分钟，含 mAP + 手写 IoU 验证 + 测速）
 & $vision src\yolo_detect.py --stage eval --skip-train
@@ -89,7 +92,7 @@ $paddle = "D:\Vibe Coding Projects\.venv-paddle\Scripts\python.exe"
 
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\03-vision-ocr-demo"
-& "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe" scripts\eval_real_dataset.py --stage all --max-pages 5
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-vision\Scripts\python.exe" scripts\eval_real_dataset.py --stage all --max-pages 5
 ```
 
 - 自动从 GitHub 下载 **XFUND v1.0 中文 zh.val**（真实扫描表单），约 6 分钟（OCR 慢）；

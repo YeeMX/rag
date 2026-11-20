@@ -16,7 +16,7 @@
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会卡死
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
 
 打开后应该看到下面这个界面（真实截图）：
@@ -110,7 +110,7 @@ $env:OPENAI_API_KEY  = "sk-你的key"
 $env:OPENAI_BASE_URL = "https://api.openai.com/v1"   # 可选
 $env:OPENAI_MODEL    = "gpt-4o-mini"                  # 可选
 $env:HF_HUB_DISABLE_XET = "1"
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
 
 > 注意：当前 Chainlit app 默认 `RAGService.load_or_build()` 不强制真实模型。
@@ -126,13 +126,13 @@ cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
 
 # 单题问答（打印检索轨迹与引用）
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" scripts\cli.py ask "公司违法辞退我，月薪12000、工作3年7个月，能赔多少？"
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" scripts\cli.py ask "公司违法辞退我，月薪12000、工作3年7个月，能赔多少？"
 
 # 交互式连续提问（输入 exit 退出）
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" scripts\cli.py chat
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" scripts\cli.py chat
 
 # 以 JSON 输出完整结果（便于截图/脚本处理）
-& "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" scripts\cli.py ask "公司违法辞退我" --json
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" scripts\cli.py ask "公司违法辞退我" --json
 ```
 
 ---
