@@ -1,4 +1,4 @@
-# Chainlit 使用指南（劳动法 RAG 系统）
+﻿# Chainlit 使用指南（劳动法 RAG 系统）
 
 > 当前已有一个实例在运行：**http://127.0.0.1:8000**（离线 Mock 模式，无需 API Key）。
 > 本文回答三个问题：**怎么打开、输入什么、会看到什么**。
@@ -14,7 +14,7 @@
 > 如果页面打不开（服务可能已停止），在 `01-labor-law-rag/` 目录下重新启动：
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会卡死
 & "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
@@ -105,7 +105,7 @@ $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会
 开启真实模型（任何 OpenAI 兼容端点：OpenAI / DeepSeek / 通义 / vLLM 均可）：
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:OPENAI_API_KEY  = "sk-你的key"
 $env:OPENAI_BASE_URL = "https://api.openai.com/v1"   # 可选
 $env:OPENAI_MODEL    = "gpt-4o-mini"                  # 可选
@@ -122,7 +122,7 @@ $env:HF_HUB_DISABLE_XET = "1"
 ## 5. 不想开浏览器？用命令行同样能问
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
 
 # 单题问答（打印检索轨迹与引用）

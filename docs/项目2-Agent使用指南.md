@@ -1,4 +1,4 @@
-# 项目② 工具调用 Agent · 怎么看 / 怎么运行
+﻿# 项目② 工具调用 Agent · 怎么看 / 怎么运行
 
 > 目录：[`02-labor-law-agent/`](../02-labor-law-agent/README.md)
 > 一句话：能调用 **3 个工具**（法条检索 / 赔偿精算 / 引用核验）的劳动法 Agent，
@@ -25,7 +25,7 @@
 ### 2.1 用本机现成环境（当前机器）
 
 ```powershell
-cd "D:\Vibe Coding Projects\02-labor-law-agent"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\02-labor-law-agent"
 
 # 5 个内置问题，打印完整 trace（离线 Mock，不需要 API key，约 5 秒）
 & "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" -m labor_agent.cli demo --no-color

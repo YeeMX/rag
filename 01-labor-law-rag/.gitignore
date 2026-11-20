@@ -1,4 +1,4 @@
-# Byte-compiled
+﻿# Byte-compiled
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -14,7 +14,10 @@ env/
 # 运行产物（模型缓存、索引、评测输出）
 data/chroma/
 data/index/
-data/eval/
+data/eval/*
+!data/eval/report.md
+!data/eval/retrieval_results.json
+!data/eval/answer_results.json
 data/runs/
 *.log
 !.gitkeep

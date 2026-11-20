@@ -1,4 +1,4 @@
-# 项目① 劳动法 RAG 系统 · 怎么看 / 怎么运行
+﻿# 项目① 劳动法 RAG 系统 · 怎么看 / 怎么运行
 
 > 目录：[`01-labor-law-rag/`](../01-labor-law-rag/README.md)
 > 一句话：4 部法律 **357 条真实法条**的检索增强问答，链路是
@@ -25,7 +25,7 @@
 ### 2.1 启动 Chainlit 界面（最推荐）
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会卡住
 & "D:\Vibe Coding Projects\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
@@ -41,7 +41,7 @@ $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会
 ### 2.2 命令行问答（不开浏览器）
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
 $py = "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe"
 
@@ -61,7 +61,7 @@ $py = "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe"
 ### 2.3 复现 50 题评测（约 15 分钟，CPU）
 
 ```powershell
-cd "D:\Vibe Coding Projects\01-labor-law-rag"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"
 & "D:\Vibe Coding Projects\.venv-rag\Scripts\python.exe" scripts\run_eval.py
 ```

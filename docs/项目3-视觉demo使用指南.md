@@ -1,4 +1,4 @@
-# 项目③ 视觉文档 demo · 怎么看 / 怎么运行
+﻿# 项目③ 视觉文档 demo · 怎么看 / 怎么运行
 
 > 目录：[`03-vision-ocr-demo/`](../03-vision-ocr-demo/README.md)
 > 一句话：**法律文书扫描件 → YOLO 版面检测（标题/正文/表格/印章）→ 区域裁剪 → PaddleOCR 识别 → 规则抽取字段**，
@@ -52,7 +52,7 @@ python -m venv ..\.venv-paddle
 ### 2.2 一键运行（推荐）
 
 ```powershell
-cd "D:\Vibe Coding Projects\03-vision-ocr-demo"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\03-vision-ocr-demo"
 
 # 复用已训练好的 models/best.pt，只复现指标 + 报告（约 11 分钟，OCR 占大头）
 & "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe" run_demo.py --skip-train
@@ -88,7 +88,7 @@ $paddle = "D:\Vibe Coding Projects\.venv-paddle\Scripts\python.exe"
 ### 2.4 真实扫描件验证（可选，需下载约 66MB）
 
 ```powershell
-cd "D:\Vibe Coding Projects\03-vision-ocr-demo"
+cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\03-vision-ocr-demo"
 & "D:\Vibe Coding Projects\.venv-vision\Scripts\python.exe" scripts\eval_real_dataset.py --stage all --max-pages 5
 ```
 
