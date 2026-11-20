@@ -17,7 +17,7 @@ $env:PYTHONIOENCODING = "utf-8"
 $ragPy = "$root\.venv-rag\Scripts\python.exe"
 $visionPy = "$root\.venv-vision\Scripts\python.exe"
 $paddlePy = "$root\.venv-paddle\Scripts\python.exe"
-$chainlit = "$root\.venv-rag\Scripts\chainlit.exe"
+
 
 function Assert-Env {
     $missing = @()
@@ -34,7 +34,7 @@ function Assert-Env {
 function Invoke-RagUi {
     Write-Host "启动 RAG 网页版：http://127.0.0.1:8000 （Ctrl+C 停止）" -ForegroundColor Cyan
     Push-Location "$root\01-labor-law-rag"
-    try { & $chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000 }
+    try { & $ragPy -m chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000 }
     finally { Pop-Location }
 }
 

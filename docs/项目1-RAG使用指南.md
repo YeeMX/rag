@@ -30,7 +30,7 @@
 ```powershell
 cd "D:\Vibe Coding Projects\labor-law-ai-portfolio\01-labor-law-rag"
 $env:HF_HUB_DISABLE_XET = "1"      # 本机必须关 XET，否则模型下载会卡住
-& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\chainlit.exe" run app\chainlit_app.py --host 127.0.0.1 --port 8000
+& "D:\Vibe Coding Projects\labor-law-ai-portfolio\.venv-rag\Scripts\python.exe" -m chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000
 ```
 
 浏览器打开 **http://127.0.0.1:8000**，直接输入问题（第一次打开需 20~30 秒加载模型）：

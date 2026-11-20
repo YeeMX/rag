@@ -49,7 +49,7 @@
 
 ## 快速开始（零配置）
 
-本机目录下已就绪三个 Python 环境（`.venv-rag` / `.venv-vision` / `.venv-paddle`，是指向已验证环境的目录联接，**未纳入 git**）和一键启动脚本：
+仓库文件夹内已就绪三个 Python 环境（`.venv-rag` / `.venv-vision` / `.venv-paddle`，**未纳入 git**）和一键启动脚本：
 
 ```powershell
 # 方式 A：双击 start.cmd（或命令行运行）—— 弹出菜单选择要跑哪个 demo
