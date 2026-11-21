@@ -1,6 +1,6 @@
 {
   "config": {
-    "weights": "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\models\\best.pt",
+    "weights": "D:\\Vibe Coding Projects\\labor-law-ai-portfolio\\03-vision-ocr-demo\\models\\best.pt",
     "imgsz": 640,
     "conf": 0.25,
     "split": "val",

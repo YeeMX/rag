@@ -1,7 +1,7 @@
 {
   "config": {
-    "weights": "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\models\\best.pt",
-    "data_yaml": "D:\\Vibe Coding Projects\\03-vision-ocr-demo\\data\\data.yaml",
+    "weights": "D:\\Vibe Coding Projects\\labor-law-ai-portfolio\\03-vision-ocr-demo\\models\\best.pt",
+    "data_yaml": "D:\\Vibe Coding Projects\\labor-law-ai-portfolio\\03-vision-ocr-demo\\data\\.data_runtime.yaml",
     "split": "val",
     "num_eval_images": 8,
     "num_regions": 91,
@@ -53,10 +53,10 @@
       }
     },
     "speed_ms_per_image": {
-      "preprocess": 0.69,
-      "inference": 35.664,
+      "preprocess": 0.935,
+      "inference": 42.348,
       "loss": 0.0,
-      "postprocess": 13.813
+      "postprocess": 16.83
     }
   },
   "manual_iou_eval": {
@@ -660,12 +660,12 @@
     "runs": 15,
     "warmup": 3,
     "imgsz": 640,
-    "median_ms": 50.06,
-    "mean_ms": 50.39,
-    "p90_ms": 54.7,
-    "min_ms": 44.3,
-    "max_ms": 57.32,
-    "fps_from_median": 19.98,
+    "median_ms": 53.12,
+    "mean_ms": 53.07,
+    "p90_ms": 56.4,
+    "min_ms": 49.54,
+    "max_ms": 56.99,
+    "fps_from_median": 18.83,
     "device": "cpu",
     "note": "端到端耗时 = 预处理 + 前向 + NMS/后处理；单进程单张，不含批量优势。"
   }

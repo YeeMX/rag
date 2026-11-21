@@ -1,6 +1,6 @@
 {
   "config": {
-    "source_texts": "outputs\\ocr_texts.json",
+    "source_texts": "D:\\Vibe Coding Projects\\labor-law-ai-portfolio\\03-vision-ocr-demo\\outputs\\ocr_texts.json",
     "split": "val",
     "pipeline": "YOLO 区域裁剪 → PaddleOCR → 规则抽取",
     "method": "正则规则（不依赖 LLM / 第三方 NLP 库）"

@@ -1,7 +1,7 @@
 ﻿# 一键启动/运行三个 demo（Windows）
 #
-# 交互式：pwsh -File start.ps1
-# 非交互：pwsh -File start.ps1 -Task rag-ui | rag-ask | rag-eval | agent-demo | agent-test | vision-demo | vision-test | test-all
+# 交互式：.\start.cmd            （或 powershell -File start.ps1）
+# 非交互：.\start.cmd -Task rag-ui | rag-ask | rag-eval | agent-demo | agent-test | vision-demo | vision-test | test-all
 #         可配合 -Question "公司违法辞退我，能赔多少？"
 param(
     [ValidateSet("menu", "rag-ui", "rag-ask", "rag-eval", "agent-demo", "agent-test", "vision-demo", "vision-test", "test-all")]
@@ -18,7 +18,6 @@ $ragPy = "$root\.venv-rag\Scripts\python.exe"
 $visionPy = "$root\.venv-vision\Scripts\python.exe"
 $paddlePy = "$root\.venv-paddle\Scripts\python.exe"
 
-
 function Assert-Env {
     $missing = @()
     if (-not (Test-Path $ragPy)) { $missing += ".venv-rag" }
@@ -26,7 +25,7 @@ function Assert-Env {
     if (-not (Test-Path $paddlePy)) { $missing += ".venv-paddle" }
     if ($missing.Count -gt 0) {
         Write-Host "缺少环境：$($missing -join ', ')" -ForegroundColor Yellow
-        Write-Host "请先运行：pwsh -File scripts\setup_envs.ps1" -ForegroundColor Yellow
+        Write-Host "请先运行：powershell -File scripts\setup_envs.ps1" -ForegroundColor Yellow
         exit 1
     }
 }
@@ -34,53 +33,62 @@ function Assert-Env {
 function Invoke-RagUi {
     Write-Host "启动 RAG 网页版：http://127.0.0.1:8000 （Ctrl+C 停止）" -ForegroundColor Cyan
     Push-Location "$root\01-labor-law-rag"
+    # Chainlit 会在“进程工作目录”下生成 .chainlit/.files，这里确保它是项目目录
     $prevCwd = [Environment]::CurrentDirectory
-    [Environment]::CurrentDirectory = (Get-Location).Path
-    try { & $ragPy -m chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000 }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    try {
+        [Environment]::CurrentDirectory = (Get-Location).Path
+        & $ragPy -m chainlit run app\chainlit_app.py --host 127.0.0.1 --port 8000
+    }
+    finally {
+        if ($prevCwd) { [Environment]::CurrentDirectory = $prevCwd }
+        Pop-Location
+    }
 }
 
 function Invoke-RagAsk {
     Write-Host "问题：$Question" -ForegroundColor Cyan
     Push-Location "$root\01-labor-law-rag"
     try { & $ragPy scripts\cli.py ask $Question }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-RagEval {
     Push-Location "$root\01-labor-law-rag"
     try { & $ragPy scripts\run_eval.py }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-AgentDemo {
     Push-Location "$root\02-labor-law-agent"
     try { & $ragPy -m labor_agent.cli demo --no-color }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-AgentTest {
     Push-Location "$root\02-labor-law-agent"
     try { & $ragPy -m pytest tests -q }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-VisionDemo {
     Push-Location "$root\03-vision-ocr-demo"
     try { & $visionPy run_demo.py --skip-train }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-VisionTest {
     Push-Location "$root\03-vision-ocr-demo"
     try { & $visionPy tests\run_all.py }
-    finally { [Environment]::CurrentDirectory = $prevCwd; Pop-Location }
+    finally { Pop-Location }
 }
 
 function Invoke-TestAll {
-    Push-Location "$root\01-labor-law-rag"; & $ragPy -m pytest tests -q; Pop-Location
-    Push-Location "$root\02-labor-law-agent"; & $ragPy -m pytest tests -q; Pop-Location
-    Push-Location "$root\03-vision-ocr-demo"; & $visionPy tests\run_all.py; Pop-Location
+    Push-Location "$root\01-labor-law-rag"
+    try { & $ragPy -m pytest tests -q } finally { Pop-Location }
+    Push-Location "$root\02-labor-law-agent"
+    try { & $ragPy -m pytest tests -q } finally { Pop-Location }
+    Push-Location "$root\03-vision-ocr-demo"
+    try { & $visionPy tests\run_all.py } finally { Pop-Location }
 }
 
 function Show-Menu {
@@ -93,7 +101,7 @@ function Show-Menu {
     Write-Host "  3) RAG 消融评测      (约 15 分钟)"
     Write-Host "  4) Agent demo        (3 工具 × function calling/LangGraph)"
     Write-Host "  5) Agent 测试        (106 个用例)"
-    Write-Host "  6) 视觉 demo         (YOLO+OCR 全流程, 约 11 分钟)"
+    Write-Host "  6) 视觉 demo         (YOLO+OCR 全流程, 约 6~11 分钟)"
     Write-Host "  7) 视觉测试          (74 个用例)"
     Write-Host "  8) 全部测试"
     Write-Host "  0) 退出"

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "timestamp": "2026-11-21T02:55:01+08:00",
+    "timestamp": "2026-11-21T16:24:38+08:00",
     "cases": 50,
     "dense_model": "sentence-transformers:BAAI/bge-small-zh-v1.5",
     "rerank_backend": "cross-encoder:BAAI/bge-reranker-base",
@@ -973,8 +973,8 @@
       "recall@10": 0.4757,
       "ndcg@10": 0.4095,
       "mrr": 0.4987,
-      "avg_latency_ms": 9.8,
-      "elapsed_s": 0.5,
+      "avg_latency_ms": 12.2,
+      "elapsed_s": 0.6,
       "settings": {
         "decompose": false,
         "expand": false,
@@ -1939,7 +1939,7 @@
       "recall@10": 0.505,
       "ndcg@10": 0.4811,
       "mrr": 0.6123,
-      "avg_latency_ms": 3.3,
+      "avg_latency_ms": 3.5,
       "elapsed_s": 0.2,
       "settings": {
         "decompose": false,
@@ -2905,8 +2905,8 @@
       "recall@10": 0.51,
       "ndcg@10": 0.4693,
       "mrr": 0.574,
-      "avg_latency_ms": 13.6,
-      "elapsed_s": 0.7,
+      "avg_latency_ms": 16.4,
+      "elapsed_s": 0.8,
       "settings": {
         "decompose": false,
         "expand": false,
@@ -3871,8 +3871,8 @@
       "recall@10": 0.5267,
       "ndcg@10": 0.5063,
       "mrr": 0.6427,
-      "avg_latency_ms": 3884.6,
-      "elapsed_s": 194.2,
+      "avg_latency_ms": 6357.5,
+      "elapsed_s": 317.9,
       "settings": {
         "decompose": false,
         "expand": false,
@@ -4737,8 +4737,8 @@
       "recall@10": 0.4383,
       "ndcg@10": 0.4569,
       "mrr": 0.6267,
-      "avg_latency_ms": 4185.7,
-      "elapsed_s": 209.3,
+      "avg_latency_ms": 5285.3,
+      "elapsed_s": 264.3,
       "settings": {
         "decompose": true,
         "expand": true,
